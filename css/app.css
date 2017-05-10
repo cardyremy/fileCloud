@@ -1,0 +1,22 @@
+body
+{
+    background-color: #cacaca;
+}
+
+.background
+{
+    height: 70px;
+    background-color: dodgerblue;
+    color: white;
+}
+.background2
+{
+    height: 150px;
+    background-color:black;
+    color: white;
+}
+.space
+{
+    height: 100px;
+    background-color: #cacaca;
+}
