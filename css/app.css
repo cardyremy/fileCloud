@@ -5,7 +5,7 @@ body
 
 .background
 {
-    height: 70px;
+    height: 110px;
     background-color: dodgerblue;
     color: white;
 }
@@ -19,4 +19,11 @@ body
 {
     height: 100px;
     background-color: #cacaca;
+}
+.white
+{
+    color: black;
+    background-color: antiquewhite;
+    border: dashed;
+    height: 500px;
 }
