@@ -84,7 +84,7 @@ class dbfunction
 
     public function selectAllFromFolder()
     {
-        $strSQLRequestUser = "select * from t_folder";
+        $strSQLRequestUser = "select * from t_folder" ;
         $query = $this->objectConnection->prepare($strSQLRequestUser);
         $rsResult = $query->execute();
         $getAll = $query->fetchAll();
@@ -93,6 +93,23 @@ class dbfunction
         return $getAll;
     }
 
+    /*********************************************
+     * Nom : sendRequestUser
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function selectAllFromFfile($id)
+    {
+        $strSQLRequestUser = "select * from t_file WHERE fkFolder=?";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($id));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
 
 
 

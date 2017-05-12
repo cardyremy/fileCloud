@@ -2,7 +2,6 @@ body
 {
     background-color: #cacaca;
 }
-
 .background
 {
     height: 110px;
@@ -23,7 +22,13 @@ body
 .white
 {
     color: black;
-    background-color: antiquewhite;
-    border: dashed;
+    background-color: whitesmoke;
     height: 500px;
+    width: 100%;
+}
+.blue
+{
+    background-color: dodgerblue;
+
+    color: black;
 }

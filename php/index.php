@@ -14,7 +14,6 @@ $loadUserData = $dbConnect->selectAllUser();
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +56,7 @@ $loadUserData = $dbConnect->selectAllUser();
                       <span class="input-group-label">
                             <i class="fa fa-key"></i>
                       </span>
-                      <input class="input-group-field" type="text" placeholder="Password">
+                      <input class="input-group-field" type="password" placeholder="Password">
                 </div>
             </div>
             <a href="loginForm.php">Click here if you are already a member </a><br>
