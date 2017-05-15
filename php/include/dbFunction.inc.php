@@ -58,7 +58,7 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom : sendRequestUser
+     * Nom : selectAllUser
      * But: Afficher les informations de la table t_user
      * Retour: $getAll
      * Paramètre: -
@@ -76,8 +76,8 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom : sendRequestUser
-     * But: Afficher les informations de la table t_user
+     * Nom : selectAllFromFolder
+     * But: Afficher les informations de la table t_folder
      * Retour: $getAll
      * Paramètre: -
      * *******************************************/
@@ -94,10 +94,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom : sendRequestUser
-     * But: Afficher les informations de la table t_user
+     * Nom : selectAllFromFfile
+     * But: Afficher les informations de la table file en fonction du fk
      * Retour: $getAll
-     * Paramètre: -
+     * Paramètre: $id
      * *******************************************/
 
     public function selectAllFromFfile($id)
@@ -111,11 +111,71 @@ class dbfunction
         return $getAll;
     }
 
+    /*********************************************
+     * Nom :insertFolder
+     * But: Ajouter à la base de donnée le champ nom depuis un parametre
+     * Retour:$getAll
+     * Paramètre: $folName,$fkFolder
+     * *******************************************/
+    public function insertFolder($folName,$fkFolder)
+    {
 
+        $strSignUpSQL = "INSERT INTO t_folder (folName,fkFolder) VALUES (?,?)";
+        $query = $this->objectConnection->prepare($strSignUpSQL);
+        $rsResult = $query->execute(array($folName,$fkFolder));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+        return $getAll;
 
+    }
+    /*********************************************
+     * Nom :deleteFolder
+     * But: Supprime le contenu de la table t_article en fonction du artBlock et du fkMenu
+     * Retour:$isExecuted
+     * Paramètre:$idFolder
+     * *******************************************/
+    public function deleteFolder($idFolder)
+    {
+        $strSQLDrop = "DELETE FROM t_folder WHERE idFolder=?";
+        $query = $this->objectConnection->prepare($strSQLDrop);
+        $isExecuted = $query->execute(array($idFolder));
+        $query->closeCursor();
 
+        return $isExecuted;
+    }
 
+    /*********************************************
+     * Nom : selectFolder
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
 
+    public function selectFolder($id)
+    {
+        $strSQLRequestUser = "select * from t_folder WHERE idFolder=?" ;
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($id));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+    /*********************************************
+     * Nom :updateFolder
+     * But: Mettre à jour le champ nom du t_folder
+     * Retour:$isExecuted
+     * Paramètre:$folderName, $idFolder
+     * *******************************************/
+    public function updateFolder ($folderName, $idFolder)
+    {
+        $strUpdateSQL = "UPDATE t_folder SET folName = ? WHERE idFolder =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($folderName, $idFolder));
+        $query->closeCursor();
+        return $isExecuted;
+    }
 
 
 
