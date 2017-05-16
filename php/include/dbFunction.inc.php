@@ -177,12 +177,74 @@ class dbfunction
         return $isExecuted;
     }
 
+    /*********************************************
+     * Nom :
+     * But:
+     * Retour:$getAll
+     * Paramètre: $folName,$fkFolder
+     * *******************************************/
+    public function moveFolder($folName,$fkFolder)
+    {
+
+        $strSignUpSQL = "INSERT INTO t_folder (folName,fkFolder) VALUES (?,?)";
+        $query = $this->objectConnection->prepare($strSignUpSQL);
+        $rsResult = $query->execute(array($folName,$fkFolder));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+        return $getAll;
+
+    }
+    /*********************************************
+     * Nom :updateFile
+     * But:
+     * Retour:$isExecuted
+     * Paramètre:$folderName, $idFolder
+     * *******************************************/
+    public function updateFile ()
+    {
+        $strUpdateSQL = "UPDATE t_file SET filName = ? WHERE idFile =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array());
+        $query->closeCursor();
+        return $isExecuted;
+    }
 
 
+    /*********************************************
+     * Nom : selectFolderFK
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
 
+    public function selectFolderFK($id)
+    {
+        $strSQLRequestUser = "select * from t_folder WHERE fkFolder=?" ;
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($id));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
 
+        return $getAll;
+    }
 
+    /*********************************************
+     * Nom :
+     * But:
+     * Retour:$getAll
+     * Paramètre: $folName,$fkFolder
+     * *******************************************/
+    public function fileUpload($fileName,$filePath,$filTag,$fkUser,$fkFolder)
+    {
 
+        $strSignUpSQL = "INSERT INTO t_file (filName,filPath,filTag,fkUser,fkFolder) VALUES (?,?,?,?,?)";
+        $query = $this->objectConnection->prepare($strSignUpSQL);
+        $rsResult = $query->execute(array($fileName,$filePath,$filTag,$fkUser,$fkFolder));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+        return $getAll;
+
+    }
 
 
 

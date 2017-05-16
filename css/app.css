@@ -23,12 +23,17 @@ body
 {
     color: black;
     background-color: whitesmoke;
-    height: 590px;
-    width: 100%;
+    height: 485px;
+    width: 98%;
+    margin-top: -8px;
 }
 .blue
 {
     background-color: dodgerblue;
 
     color: black;
+}
+h5
+{
+    color: #67251a;
 }

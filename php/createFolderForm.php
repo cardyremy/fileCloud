@@ -8,7 +8,8 @@
 
 include_once ('include/header.inc.php');
 
-$idFolder = $_GET['fk'];
+$idFolder = $_GET['id'];
+$fkFolder = $_GET['fk'];
 
 ?>
 
