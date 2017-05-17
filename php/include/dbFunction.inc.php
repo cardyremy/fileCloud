@@ -183,17 +183,36 @@ class dbfunction
      * Retour:$getAll
      * Paramètre: $folName,$fkFolder
      * *******************************************/
-    public function moveFolder($folName,$fkFolder)
+    public function moveFolder($folName,$fkFolder,$idFolder)
     {
 
-        $strSignUpSQL = "INSERT INTO t_folder (folName,fkFolder) VALUES (?,?)";
-        $query = $this->objectConnection->prepare($strSignUpSQL);
-        $rsResult = $query->execute(array($folName,$fkFolder));
-        $getAll = $query->fetchAll();
+        $strUpdateSQL = "UPDATE t_folder SET folName=?, fkFolder=? WHERE idFolder =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($folName,$fkFolder,$idFolder));
         $query->closeCursor();
-        return $getAll;
+        return $isExecuted;
 
     }
+
+    /*********************************************
+     * Nom :
+     * But:
+     * Retour:$getAll
+     * Paramètre:
+     * *******************************************/
+    public function moveFile($firstFkFile,$secondFkFIle)
+    {
+
+
+
+        $strUpdateSQL = "UPDATE t_file SET fkFolder=? WHERE fkFolder =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($firstFkFile,$secondFkFIle));
+        $query->closeCursor();
+        return $isExecuted;
+
+    }
+
     /*********************************************
      * Nom :updateFile
      * But:
@@ -245,10 +264,6 @@ class dbfunction
         return $getAll;
 
     }
-
-
-
-
 
 
 

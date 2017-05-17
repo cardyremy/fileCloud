@@ -11,7 +11,9 @@ $dbConnect = new dbfunction();
 $loadFolderNames = $dbConnect->selectAllFromFolder();
 
 
+
 $idFolder = $_POST['idFolder'];
+$selectFolder = $dbConnect->selectFolder($idFolder);
 
 ?>
 
@@ -35,10 +37,12 @@ $idFolder = $_POST['idFolder'];
 <body>
 <div class="row">
     <div class="medium-12 columns">
-        <form>
+        <form action="moveRequest.php" method="post">
+            <input value="<?php echo $idFolder ?>" type="hidden" name="idFolder">
+            <input type="hidden" value="<?php echo $selectFolder[0]['folName'] ?>" name="folName">
             <label>Folder choose
-                <select>
-                    <?php for($i=0;$i<count($loadFolderNames);$i++){?> <option value="<?php $loadFolderNames[$i]['idFolder'] ?>"><?php echo $loadFolderNames[$i]['folName'];} ?></option>
+                <select name="destinationFolder">
+                    <?php for($i=0;$i<count($loadFolderNames);$i++){?> <option value="<?php echo $loadFolderNames[$i]['idFolder'] ?>" ><?php echo $loadFolderNames[$i]['folName'];}?></option>
                 </select>
             </label>
             <input type="submit" class="button">
