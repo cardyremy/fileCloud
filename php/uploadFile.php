@@ -19,7 +19,7 @@ if(!empty($_FILES['file']))
 {
     // Constantes
     define('TARGET', '../Files/');    // Repertoire cible
-    define('MAX_SIZE', 100000000000);                         // Taille max en octets du fichier
+    define('MAX_SIZE', 1000000000000);                         // Taille max en octets du fichier
     define('WIDTH_MAX', 200000000);                           // Largeur max de l'image en pixels
     define('HEIGHT_MAX', 200000000);                          // Hauteur max de l'image en pixels
 
@@ -52,8 +52,8 @@ if(!empty($_FILES['file']))
         $extension  = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
         // On verifie l'extension du fichier
-        if(in_array(strtolower($extension),$tabExt))
-        {
+        //if(in_array(strtolower($extension),$tabExt))
+        //{
             // On recupere les dimensions du fichier
             $infosImg = getimagesize($_FILES['file']['tmp_name']);
 
@@ -91,12 +91,12 @@ if(!empty($_FILES['file']))
                 // Sinon erreur sur les dimensions et taille de l'image
                 echo $message = 'Erreur dans les dimensions de l\'image !';
             }
-        }
+       /* }
         else
         {
             // Sinon on affiche une erreur pour l'extension
             echo $message = 'L\'extension du fichier est incorrecte !';
-        }
+        }*/
     }
     else
     {
@@ -107,8 +107,11 @@ if(!empty($_FILES['file']))
 
 }
 }
+$updateNumber = 1;
 
 $addToDb = $dbConnect->fileUpload($name,$fileName,$tag,$userId,$idFolder);
+$updateFolder = $dbConnect->updateFolderFileCheck($updateNumber = 1,$idFolder);
+
 
 echo "En cours d'ajout...";
 header('Refresh:1 folderPage.php');

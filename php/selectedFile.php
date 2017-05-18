@@ -123,7 +123,7 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
                 </div>
 
 
-                <div class="medium-4 columns ">
+                <div class="medium-6 columns ">
                     <?php
                     for($i=0;$i<count($selectFolderFk);$i++)
                     {
@@ -136,9 +136,30 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
                     for($j=0;$j<count($loadFileData);$j++){
                         ?>
 
-                        <a href="../Files/<?php echo $loadFileData[$j]['filPath']?>"><?php echo $loadFileData[$j]['filName']; ?></a><br>
+                            <a href="fileDetails.php?id=<?php echo $loadFileData[$j]['idFile'];?>"> <?php echo $loadFileData[$j]['filName'];?></a>
+                            <br>
+
+
+
 
                     <?php } ?>
+
+                    <form action="test.php" onclick=" return change<?php echo $j?>()">
+                        <input type="hidden" id="renameButton<?php echo $j ?>"  value=" Rename " class="button" >
+
+                    </form>
+                    <form onclick="change<?php echo $j?>()">
+                        <input type="hidden" id="moveButton<?php echo $j ?>"  value="    Move   " class="button">
+                    </form>
+
+
+                    <form  onclick="change<?php echo $j?>()">
+                        <input type="hidden" id="download<?php echo $j ?>"  value="Download" class="button">
+                    </form>
+
+                    <form  onclick="change<?php echo $j?>()">
+                        <input type="hidden" id="infos<?php echo $j ?>"  value="  Details   " class="button">
+                    </form>
 
                 </div>
                 <div class="medium-4 columns">
@@ -159,7 +180,11 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
 <div class="row">
     <div class="medium-4 columns" style="padding: 0px">
 
+
     </div>
+
+
+
     <div class="medium-8 columns"style="padding: 0px">
         <label>
             <h4>Upload files</h4>
@@ -189,16 +214,7 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
 
 <script src="../js/renameHide.js"></script>
 
-<script>
-    /* function changeButton()
-     {
-     document.getElementById('button').type = 'button';
-     document.getElementById("change").className = "medium-3 columns";
-     return changeButton();
-     }
 
-     */
-</script>
 
 <?php
 

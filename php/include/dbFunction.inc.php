@@ -264,9 +264,39 @@ class dbfunction
         return $getAll;
 
     }
+    /*********************************************
+     * Nom :updateFolderFileCheck
+     * But:
+     * Retour:$isExecuted
+     * Paramètre:$folFileUpdate, $idFolder
+     * *******************************************/
+    public function updateFolderFileCheck ($folFileUpdate, $idFolder)
+    {
+        $strUpdateSQL = "UPDATE t_folder SET folFileCheck = ? WHERE idFolder =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($folFileUpdate, $idFolder));
+        $query->closeCursor();
+        return $isExecuted;
+    }
 
 
+    /*********************************************
+     * Nom :
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
 
+    public function selectFileID($id)
+    {
+        $strSQLRequestUser = "select * from t_file WHERE idFile=?" ;
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($id));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
 
 
 

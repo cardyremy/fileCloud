@@ -16,9 +16,23 @@ $folderName = $_POST['folName'];
 
 $objConnect = new dbfunction();
 
-$moveFolder = $objConnect-> moveFolder($folderName,$destinationFolder,$idFolder);
+$folderCheck = $objConnect->selectAllFromFolder();
 
-$moveFile = $objConnect-> moveFile($idFolder,$destinationFolder);
+for($i=0;$i<count($folderCheck);$i++)
+{
+    //Verifie si le dossier contient des fichiers
+     if($folderCheck[$i]['folFileCheck']==1)
+     {
+         $moveFolder = $objConnect-> moveFolder($folderName,$destinationFolder,$idFolder);
+
+         $moveFile = $objConnect-> moveFile($idFolder,$destinationFolder);
+     }
+    else
+    {
+        $moveFolder = $objConnect-> moveFolder($folderName,$destinationFolder,$idFolder);
+    }
+}
+
 
 echo "En cours de déplacement...";
 header('Refresh:1 folderPage.php');
