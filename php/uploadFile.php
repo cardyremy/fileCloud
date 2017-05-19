@@ -19,18 +19,19 @@ if(!empty($_FILES['file']))
 {
     // Constantes
     define('TARGET', '../Files/');    // Repertoire cible
-    define('MAX_SIZE', 1000000000000);                         // Taille max en octets du fichier
-    define('WIDTH_MAX', 200000000);                           // Largeur max de l'image en pixels
-    define('HEIGHT_MAX', 200000000);                          // Hauteur max de l'image en pixels
+    define('MAX_SIZE', 100000000000000000);                         // Taille max en octets du fichier
+    define('WIDTH_MAX', 2000000000000000);                           // Largeur max de l'image en pixels
+    define('HEIGHT_MAX', 2000000000000000);                          // Hauteur max de l'image en pixels
 
 // Tableaux de donnees
-    $tabExt = array('jpg','gif','png','jpeg');          // Extensions autorisees
+    $tabExt = array('jpg','gif','png','jpeg','zip','rar','xlsx','docx');          // Extensions autorisees
     $infosImg = array();
 
 // Variables
     $extension = '';
     $message = '';
     $nomImage = '';
+    $fileName='';
 
 if(!empty($_FILES['file']))
 {
@@ -55,13 +56,13 @@ if(!empty($_FILES['file']))
         //if(in_array(strtolower($extension),$tabExt))
         //{
             // On recupere les dimensions du fichier
-            $infosImg = getimagesize($_FILES['file']['tmp_name']);
+            //$infosImg = getimagesize($_FILES['file']['tmp_name']);
 
             // On verifie le type de l'image
 
             // On verifie les dimensions et taille de l'image
-            if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['file']['tmp_name']) <= MAX_SIZE))
-            {
+            //if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['file']['tmp_name']) <= MAX_SIZE))
+            //{
                 // Parcours du tableau d'erreurs
                 if(isset($_FILES['file']['error'])
                     && UPLOAD_ERR_OK === $_FILES['file']['error'])
@@ -85,12 +86,14 @@ if(!empty($_FILES['file']))
                     // Sinon on affiche un erreur interne
                     echo $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
                 }
+    /*
             }
+
             else
             {
                 // Sinon erreur sur les dimensions et taille de l'image
                 echo $message = 'Erreur dans les dimensions de l\'image !';
-            }
+            }*/
        /* }
         else
         {
@@ -103,7 +106,6 @@ if(!empty($_FILES['file']))
         // Sinon on affiche une erreur pour le champ vide
         echo $message = 'Veuillez remplir le formulaire svp !';
     }
-
 
 }
 }

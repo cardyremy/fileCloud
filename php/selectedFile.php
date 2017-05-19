@@ -55,7 +55,7 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
         </div>
         <div class="medium-6 columns text-right" style="padding-bottom: 20px">
             <a href="createFolderForm.php?id=<?php echo $idFromFolder;?>&fk=<?php for($i=0;$i<count($selectFolder);$i++){echo $selectFolder[$i]['fkFolder'];}?>"><img src="../img/addFold2.png" style="height: 45px;width: 45px"></a>
-            <a href="#"><img src="../img/edit.ico" style="height: 45px;width: 45px"></a>
+            <!--<a href="#"><img src="../img/edit.ico" style="height: 45px;width: 45px"></a> -->
             <a onclick=" return deleteConf('<?php if (isset($_GET['id'])) { echo $selectFolder[0]['folName']; }?>');" href="deleteFolder.php?id=<?php echo $idFromFolder;?>"><img src="../img/delete.ico" style="height: 45px;width: 45px"></a>
         </div>
     </div>
@@ -201,6 +201,7 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
                 Maximum 500Mo
             </label>
             <input type="file" id="fileUpload" name="file">
+            <input type="hidden" name="MAX_FILE_SIZE" value="500000000">
             <input type="submit" value="submit" class="button">
         </form>
     </div>

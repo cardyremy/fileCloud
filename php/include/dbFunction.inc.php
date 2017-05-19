@@ -219,12 +219,12 @@ class dbfunction
      * Retour:$isExecuted
      * Paramètre:$folderName, $idFolder
      * *******************************************/
-    public function updateFile ()
+    public function updateFile ($fileName,$idFile)
     {
         $strUpdateSQL = "UPDATE t_file SET filName = ? WHERE idFile =?";
         $query = $this->objectConnection->prepare($strUpdateSQL);
-        $isExecuted = $query->execute(array());
-        $query->closeCursor();
+        $isExecuted = $query->execute(array($fileName,$idFile));
+        $query->closeCursor($fileName,$idFile);
         return $isExecuted;
     }
 
@@ -297,6 +297,57 @@ class dbfunction
 
         return $getAll;
     }
+
+    /*********************************************
+     * Nom :
+     * But:
+     * Retour:$isExecuted
+     * Paramètre:$folFileUpdate, $idFolder
+     * ******************************************/
+    public function updateFileMove ($fkFolder, $idFile)
+    {
+        $strUpdateSQL = "UPDATE t_file SET fkFolder = ? WHERE idFile =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($fkFolder, $idFile));
+        $query->closeCursor();
+        return $isExecuted;
+    }
+
+    /*********************************************
+     * Nom :
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function fileCheckMoreThanOne($id)
+    {
+        $strSQLRequestUser = "select fkFolder from t_file WHERE idFile=?" ;
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($id));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+    /*********************************************
+     * Nom :
+     * But:
+     * Retour:$isExecuted
+     * Paramètre:$idFolder
+     * *******************************************/
+    public function deleteFile($idFile)
+    {
+        $strSQLDrop = "DELETE FROM t_file WHERE idFile=?";
+        $query = $this->objectConnection->prepare($strSQLDrop);
+        $isExecuted = $query->execute(array($idFile));
+        $query->closeCursor();
+
+        return $isExecuted;
+    }
+
+
 
 
 
