@@ -6,6 +6,7 @@
 // But: Page contenant les dossiers des utilisateurs
 //*********************************************************/
 
+
 include_once ('include/header.inc.php');
 include_once ('include/dbFunction.inc.php');
 
@@ -46,7 +47,7 @@ $selectFolder = $dbConnect->selectFolder($idFromFolder);
 
 <div class="space">
     <div class="row">
-        <div class="text-center"><p>Bonjour Utilisateur</p></div>
+        <div class="text-center"><p>Bonjour <?php echo $_SESSION['useEmail'] ?></p></div>
 
         <div class="medium-6 columns">
 

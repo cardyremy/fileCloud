@@ -8,12 +8,18 @@
 
 include_once ('include/dbFunction.inc.php');
 
+session_start();
+$dbConnect = new dbfunction();
+
 $tag = $_POST['tag'];
 $name = $_POST['nom'];
 $idFolder = $_POST['id'];
-$userId = 1;
+$userEmail = $_SESSION['useEmail'];
 
-$dbConnect = new dbfunction();
+$loadUserId= ($dbConnect->selectUserFromSession($userEmail));
+
+$idUser = $loadUserId[0]['idUser'];
+
 
 if(!empty($_FILES['file']))
 {
@@ -111,7 +117,7 @@ if(!empty($_FILES['file']))
 }
 $updateNumber = 1;
 
-$addToDb = $dbConnect->fileUpload($name,$fileName,$tag,$userId,$idFolder);
+$addToDb = $dbConnect->fileUpload($name,$fileName,$tag,$idUser,$idFolder);
 $updateFolder = $dbConnect->updateFolderFileCheck($updateNumber = 1,$idFolder);
 
 

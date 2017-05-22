@@ -117,12 +117,12 @@ class dbfunction
      * Retour:$getAll
      * Paramètre: $folName,$fkFolder
      * *******************************************/
-    public function insertFolder($folName,$fkFolder)
+    public function insertFolder($folName,$fkFolder,$fkUser)
     {
 
-        $strSignUpSQL = "INSERT INTO t_folder (folName,fkFolder) VALUES (?,?)";
+        $strSignUpSQL = "INSERT INTO t_folder (folName,fkFolder,fkUser) VALUES (?,?,?)";
         $query = $this->objectConnection->prepare($strSignUpSQL);
-        $rsResult = $query->execute(array($folName,$fkFolder));
+        $rsResult = $query->execute(array($folName,$fkFolder,$fkUser));
         $getAll = $query->fetchAll();
         $query->closeCursor();
         return $getAll;
@@ -347,6 +347,93 @@ class dbfunction
         return $isExecuted;
     }
 
+    /*********************************************
+     * Nom : sendRequestUser
+     * But: Afficher toutes les information de l'utilisateur qui est en parametre
+     * Retour:$getAll
+     * Paramètre:$username
+     * *******************************************/
+    public function sendRequestUser($userEmail=null)
+    {
+        $strSQLRequestUser = "select * from t_user  WHERE useEmail=?";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($userEmail));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+    /*********************************************
+     * Nom :usernameCheck
+     * But:Verifier que l'utilisateur existe dans la BD
+     * Retour:$getAll
+     * Paramètre:$usernameCheck
+     * *******************************************/
+    public function usernameCheck ($userEmailCheck)
+    {
+        $strSelectUserSQL = "SELECT useEmail FROM t_user WHERE useEmail = ?";
+        $query = $this-> objectConnection->prepare($strSelectUserSQL);
+
+        $rsResult = $query->execute(array($userEmailCheck));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+    /*********************************************
+     * Nom :
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function selectFolderFromUser($userId,$fkFolder)
+    {
+        $strSQLRequestUser = "SELECT * FROM t_folder WHERE fkUser =? AND fkFolder = ?";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($userId,$fkFolder));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+    /*********************************************
+     * Nom :
+     * But:Verifier que l'utilisateur existe dans la BD
+     * Retour:$getAll
+     * Paramètre:$usernameCheck
+     * *******************************************/
+    public function selectUserFromSession ($userEmail)
+    {
+        $strSelectUserSQL = "SELECT idUser FROM t_user WHERE useEmail = ?";
+        $query = $this-> objectConnection->prepare($strSelectUserSQL);
+
+        $rsResult = $query->execute(array($userEmail));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+    /*********************************************
+     * Nom :
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function selectFileFromUser($userId,$fkFolder)
+    {
+        $strSQLRequestUser = "SELECT * FROM t_file WHERE fkUser =? AND fkFolder = ?";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($userId,$fkFolder));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
 
 
 

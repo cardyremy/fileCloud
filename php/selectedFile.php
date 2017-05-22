@@ -29,6 +29,16 @@ $loadFileData = $dbConnect->selectAllFromFfile($idFromFolder);
 $selectFolder = $dbConnect->selectFolder($idFromFolder);
 $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
 
+
+$email = $_SESSION['useEmail'];
+$idUser = $dbConnect->sendRequestUser($email) ;
+
+$id= $idUser[0]['idUser'];
+
+$loadFolderFromUser = $dbConnect->selectFolderFromUser($id,$idFromFolder);
+$loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +95,7 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
 
                 </div>
                 <div class="medium-10" style="padding-left: 15px">
-                    <input id="button" type="button" onclick="  displayHide();changeType()" class="button" value="Rename">
+                    <input id="button" type="button" onclick=" displayHide();changeType()" class="button" value="Rename">
                     <div class="hide" id="change">
                         <input type="submit" id="button" class="button" value="Save" style="padding-right: 20px">
                     </div>
@@ -122,21 +132,20 @@ $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
                     <p>Tag</p>
                 </div>
 
-
                 <div class="medium-6 columns ">
                     <?php
-                    for($i=0;$i<count($selectFolderFk);$i++)
+                    for($i=0;$i<count($loadFolderFromUser);$i++)
                     {
                         ?>
                         <img src="../img/folderClose.png" style="height: 25px;width: 25px">
-                        <a href="selectedFile.php?id=<?php echo $selectFolderFk[$i]['idFolder']; ?>"><?php echo $selectFolderFk[$i]['folName']; ?></a><br>
+                        <a href="selectedFile.php?id=<?php echo $loadFolderFromUser[$i]['idFolder']; ?>"><?php echo $loadFolderFromUser[$i]['folName']; ?></a><br>
 
                         <?php
                     }
-                    for($j=0;$j<count($loadFileData);$j++){
+                    for($j=0;$j<count($loadFileFromUser);$j++){
                         ?>
 
-                            <a href="fileDetails.php?id=<?php echo $loadFileData[$j]['idFile'];?>"> <?php echo $loadFileData[$j]['filName'];?></a>
+                            <a href="fileDetails.php?id=<?php echo $loadFileFromUser[$j]['idFile'];?>"> <?php echo $loadFileFromUser[$j]['filName'];?></a>
                             <br>
 
 

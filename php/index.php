@@ -34,7 +34,7 @@ $loadUserData = $dbConnect->selectAllUser();
 
 <div class="row ">
     <div class="small-4 small-centered columns text-center">
-        <form>
+        <form action="signUp.php" method="post">
             <div class="form-icons">
                 <h4>Register for an account</h4>
 
@@ -42,21 +42,21 @@ $loadUserData = $dbConnect->selectAllUser();
                     <span class="input-group-label">
                         <i class="fa fa-user"></i>
                     </span>
-                    <input class="input-group-field" type="text" placeholder="Full name">
+                    <input class="input-group-field" type="text" placeholder="Full name" name="name" required>
                 </div>
 
                 <div class="input-group">
                       <span class="input-group-label">
                             <i class="fa fa-envelope"></i>
                       </span>
-                      <input class="input-group-field" type="text" placeholder="Email">
+                      <input class="input-group-field" type="text" placeholder="Email" name="email" required>
                 </div>
 
                 <div class="input-group">
                       <span class="input-group-label">
                             <i class="fa fa-key"></i>
                       </span>
-                      <input class="input-group-field" type="password" placeholder="Password">
+                      <input class="input-group-field" type="password" placeholder="Password" name="password" required>
                 </div>
             </div>
             <a href="loginForm.php">Click here if you are already a member </a><br>

@@ -23,15 +23,15 @@ include_once('include/header.inc.php');
 <div class="row">
     <div class="medium-6  large-4 large-centered columns border-1">
 
-        <form method="POST" action="" name="formLogin">
+        <form method="POST" action="login.php" name="formLogin">
             <div class="row">
-                <h4 class="text-center ">Log in with your username</h4>
-                <label>Username
+                <h4 class="text-center ">Log in with your Email Address</h4>
+                <label>Email Address
                     <div class="input-group">
                     <span class="input-group-label">
                         <i class="fa fa-user"></i>
                     </span>
-                        <input class="input-group-field" type="text" placeholder="Username">
+                        <input class="input-group-field" type="text" placeholder="Email" name="userEmail">
                     </div>
                 </label>
                 <label>Password
@@ -39,7 +39,7 @@ include_once('include/header.inc.php');
                       <span class="input-group-label">
                             <i class="fa fa-key"></i>
                       </span>
-                        <input class="input-group-field" type="password" placeholder="Password">
+                        <input class="input-group-field" type="password" placeholder="Password" name="password">
                     </div>
                 </label>
                 <input id="show-password" type="checkbox"><label for="show-password">Show password</label>

@@ -13,6 +13,8 @@ $fkFolder = $_GET['fk'];
 $dbConnect =new dbfunction();
 
 $loadFilesFromFolder = $dbConnect->fileCheckMoreThanOne($idFile);
+$loadFilePath = $dbConnect->selectFileID($idFile);
+
 
 for($i=0;$i<count($loadFilesFromFolder);$i++)
 {
@@ -20,11 +22,19 @@ for($i=0;$i<count($loadFilesFromFolder);$i++)
     if($countFilesInFolder > 1)
     {
         $deleteFile = $dbConnect->deleteFile($idFile);
+
+            $path = '../Files/'.$loadFilePath[0]['filPath'];
+            unlink($path);
+
     }
     else
     {
         $deleteFile = $dbConnect->deleteFile($idFile);
         $folderCheckUpdate = $dbConnect->updateFolderFileCheck('0',$fkFolder);
+
+            $path = '../Files/'.$loadFilePath[0]['filPath'];
+            unlink($path);
+
     }
 
 }

@@ -7,12 +7,22 @@
 //*********************************************************/
 include_once ('include/dbFunction.inc.php');
 
-$folName = $_POST['folName'];
-$folderId = $_POST['idFolder'];
+session_start();
 
 $dbConnect = new dbfunction();
 
-$insertFolderIntoDb = $dbConnect->insertFolder($folName,$folderId);
+$user = $_SESSION['useEmail'];
+$selectUser = $dbConnect->sendRequestUser($user);
+$idUser = $selectUser[0]['idUser'];
+
+
+$folName = $_POST['folName'];
+$folderId = $_POST['idFolder'];
+
+
+$dbConnect = new dbfunction();
+
+$insertFolderIntoDb = $dbConnect->insertFolder($folName,$folderId,$idUser);
 
 
 echo "En cours d'ajout...";
