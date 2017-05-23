@@ -435,9 +435,76 @@ class dbfunction
         return $getAll;
     }
 
+    /*********************************************
+     * Nom :emailCheckUser
+     * But:Verifier que l'email existe dans la BD
+     * Retour:$getAll
+     * Paramètre:$useEmail
+     * *******************************************/
+    public function emailCheckUser ($useEmail)
+    {
+        $strSelectUserSQL = "SELECT useEmail FROM t_user WHERE useEmail = ?";
+        $query = $this-> objectConnection->prepare($strSelectUserSQL);
+
+        $rsResult = $query->execute(array($useEmail));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+
+    /*********************************************
+     * Nom :updateConfirmKey
+     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+    public function updateConfirmKey ($useEmail)
+    {
+        $strUpdateSQL = "UPDATE t_user SET useConfirm = '1' WHERE useEmail =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($useEmail));
+        $query->closeCursor();
+        return $isExecuted;
+    }
+    /*********************************************
+     * Nom :
+     * But:
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+
+    public function newUser($userName,$userEmail,$userPwd,$userToken)
+    {
+
+        $strSignUpSQL = "INSERT INTO t_user (useName,useEmail,usePassword,useToken) VALUES (?,?,?,?)";
+        $query = $this->objectConnection->prepare($strSignUpSQL);
+        $rsResult = $query->execute(array($userName,$userEmail,$userPwd,$userToken));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+        return $getAll;
+
+    }
 
 
 
+    /*********************************************
+     * Nom :emailCheckUser
+     * But:Verifier que l'email existe dans la BD
+     * Retour:$getAll
+     * Paramètre:$useEmail
+     * *******************************************/
+    public function tokenCheck ($useEmail)
+    {
+        $strSelectUserSQL = "SELECT * FROM t_user WHERE useEmail = ?";
+        $query = $this-> objectConnection->prepare($strSelectUserSQL);
 
+        $rsResult = $query->execute(array($useEmail));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
 
 }

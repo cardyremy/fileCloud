@@ -11,9 +11,19 @@ include_once ('include/dbFunction.inc.php');
 $idFolder = $_GET['id'];
 
 $dbConnect = new dbfunction();
-$deleteFolder = $dbConnect->deleteFolder($idFolder);
 
-echo "En cours de suppression...";
+if($idFolder==1)
+{
+    echo 'Ce dossier ne peut pas etre supprimé !';
+    header('Refresh:2 folderPage.php');
+}
+else
+{
+    $deleteFolder = $dbConnect->deleteFolder($idFolder);
 
-header('Refresh:2 folderPage.php');
+    echo "En cours de suppression...";
+
+    header('Refresh:2 folderPage.php');
+
+}
 

@@ -53,6 +53,7 @@ if (isset($_POST))
                // $_SESSION['useRights'] = $userConnect[0]['useRights'];
                 $msg = "Bienvenue";
                 header('Location:folderPage.php?msg='.htmlspecialchars($msg));
+                fopen('mailTest.php','r');
 
             }else
             {

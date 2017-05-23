@@ -42,7 +42,6 @@ include_once('include/header.inc.php');
                         <input class="input-group-field" type="password" placeholder="Password" name="password">
                     </div>
                 </label>
-                <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
                 <input class="button expanded"  type="submit" name="btnLogin" value="Log In" />
                 <p class="text-center"><a href="forgotPasswordForm.php">Forgot your password?</a></p>
                 <p class="text-center"><a href="index.php">Create an account</a></p>
