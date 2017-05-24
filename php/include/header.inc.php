@@ -8,6 +8,16 @@
 
 session_start();
 include_once ('dbFunction.inc.php');
+
+$dbConnect = new dbfunction();
+
+//$email=$_SESSION['useEmail'];
+//$getId = $dbConnect->sendRequestUser($email);
+ //$idUser = $getId[0]['idUser'];
+/*
+$tag = $_POST['tag'];
+$userTag = $dbConnect->sendRequestTag($tag,$idUser);
+*/
 ?>
 
 <link href="../../css/foundation.css" rel="stylesheet" >
@@ -65,12 +75,16 @@ include_once ('dbFunction.inc.php');
             ?>
                 <div class="row">
                     <div class="medium-12 columns" style="padding: 0px">
+                        <form method="post" action="../selectedFile.php">
+
                         <div class="input-group input-group-rounded">
-                            <input class="input-group-field" type="search">
-                            <div class="input-group-button">
-                                <input type="submit" class="button secondary" value="Search">
-                            </div>
+                                <input class="input-group-field" type="search" name="tag">
+                                <div class="input-group-button">
+                                    <input type="submit" class="button secondary" value="Search">
+                                </div>
+
                         </div>
+                        </form>
                     </div>
 
                 </div>

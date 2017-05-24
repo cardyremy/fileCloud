@@ -10,8 +10,6 @@ include_once ('include/dbFunction.inc.php');
 $dbConnect = new dbfunction();
 $loadFolderNames = $dbConnect->selectAllFromFolder();
 
-
-
 $idFolder = $_POST['idFolder'];
 $selectFolder = $dbConnect->selectFolder($idFolder);
 

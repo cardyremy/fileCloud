@@ -506,5 +506,35 @@ class dbfunction
 
         return $getAll;
     }
+    /*********************************************
+     * Nom : sendRequestTag
+     * But:
+     * Retour: $getAll
+     * Paramètre: --
+     * *******************************************/
+    public function sendRequestTag($tag,$fkUSer)
+    {
+        $strSQLRequestUser = "select * from t_file WHERE filTag like '%$tag%' AND fkFile ='$fkUSer'";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute();
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+    /*********************************************
+     * Nom :updateConfirmKey
+     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+    public function updateUserPassword ($usePassword,$useEmail)
+    {
+        $strUpdateSQL = "UPDATE t_user SET usePassword = ? WHERE useEmail =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($usePassword,$useEmail));
+        $query->closeCursor();
+        return $isExecuted;
+    }
 
 }
