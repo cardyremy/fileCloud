@@ -17,7 +17,7 @@ $selectFolder = $dbConnect->selectFolder($idFolder);
 $idUser = $dbConnect->sendRequestUser($email) ;
 $id = $idUser[0]['idUser'];
 
-$loadFolderFromUser = $dbConnect->selectFolderFromUser($id,$idFolder);
+$loadFolderFromUser = $dbConnect->selectFolderWhereUserAndFK($id,$idFolder);
 
 ?>
 

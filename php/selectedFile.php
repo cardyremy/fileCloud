@@ -12,17 +12,6 @@ include_once ('include/dbFunction.inc.php');
 
 $dbConnect = new dbfunction();
 
-$inactive = 300;
-if( !isset($_SESSION['timeout']) )
-    $_SESSION['timeout'] = time() + $inactive;
-
-$session_life = time() - $_SESSION['timeout'];
-
-if($session_life > $inactive)
-{  $msg = "Expiration de la session";
-    session_destroy(); header('Location:index.php');     }
-
-$_SESSION['timeout']=time();
 
 if(!empty($_GET['id']))
 {
@@ -69,7 +58,7 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
 
 <div class="space">
     <div class="row">
-        <div class="text-center"><p>Bonjour Utilisateur</p></div>
+        <div class="text-center"><p>Bonjour <?php echo $_SESSION['useEmail'] ?></p></div>
 
         <div class="medium-6 columns">
 
@@ -161,8 +150,6 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
                             <br>
 
 
-
-
                     <?php } ?>
 
                     <form action="test.php" onclick=" return change<?php echo $j?>()">
@@ -215,7 +202,7 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
             <label>
                 Nom du fichier
             </label>
-            <input type="text" name="nom" placeholder="Name" required>
+            <input type="text" name="nom" placeholder="Name">
             <input type="text" name="tag" placeholder="Tag" required>
             <input type="hidden" value="<?php echo $idFromFolder; ?>" name="id">
             <label>

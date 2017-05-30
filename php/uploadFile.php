@@ -12,6 +12,7 @@ session_start();
 $dbConnect = new dbfunction();
 
 $tag = $_POST['tag'];
+
 $name = $_POST['nom'];
 $idFolder = $_POST['id'];
 $userEmail = $_SESSION['useEmail'];
@@ -30,7 +31,7 @@ if(!empty($_FILES['file']))
     define('HEIGHT_MAX', 2000000000000000);                          // Hauteur max de l'image en pixels
 
 // Tableaux de donnees
-    $tabExt = array('jpg','gif','png','jpeg','zip','rar','xlsx','docx');          // Extensions autorisees
+    $tabExt = array('jpg','gif','png','jpeg','zip','rar','xlsx','docx','rtf','bmp','png');          // Extensions autorisees
     $infosImg = array();
 
 // Variables
@@ -74,7 +75,21 @@ if(!empty($_FILES['file']))
                     && UPLOAD_ERR_OK === $_FILES['file']['error'])
                 {
                     // On renomme le fichier
-                    $fileName = $name.'.'.$extension;
+                    if(empty($name))
+                    {
+
+                        $name= pathinfo($_FILES['file']['name'], PATHINFO_FILENAME).'.'.$extension;
+                        $fileName = $name.'.'.$extension;
+
+
+                    }
+                    else
+                    {
+                        $fileName = $name.'.'.$extension;
+                        $name = $name.'.'.$extension;
+                    }
+}
+
 
                     // Si c'est OK, on teste l'upload
                     if(move_uploaded_file($_FILES['file']['tmp_name'], TARGET.$fileName))
@@ -113,7 +128,7 @@ if(!empty($_FILES['file']))
         echo $message = 'Veuillez remplir le formulaire svp !';
     }
 
-}
+
 }
 $updateNumber = 1;
 

@@ -6,12 +6,19 @@
  * Time: 08:17
  */
 include_once ('include/dbFunction.inc.php');
-
 $idFile = $_POST['id'];
 
 
 $dbConnect = new dbfunction();
 $loadFolderNames = $dbConnect->selectAllFromFolder();
+
+$email = $_POST['email'];
+
+
+$idUser = $dbConnect->sendRequestUser($email) ;
+$id = $idUser[0]['idUser'];
+
+$loadFolderFromUser = $dbConnect->selectFolderWhereUser($id);
 
 
 ?>
@@ -40,7 +47,7 @@ $loadFolderNames = $dbConnect->selectAllFromFolder();
                 <input type="hidden" value="<?php echo $idFile; ?>" name="id">
                 <label>Folder choose
                     <select name="destinationFolder">
-                        <?php for($i=0;$i<count($loadFolderNames);$i++){?> <option value="<?php echo $loadFolderNames[$i]['idFolder'] ?>" ><?php echo $loadFolderNames[$i]['folName'];}?></option>
+                        <?php for($i=0;$i<count($loadFolderFromUser);$i++){?> <option value="<?php echo $loadFolderFromUser[$i]['idFolder'] ?>" ><?php echo $loadFolderFromUser[$i]['folName'];}?></option>
                     </select>
                 </label>
                 <input type="submit" class="button">

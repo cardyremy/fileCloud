@@ -391,7 +391,7 @@ class dbfunction
 
     public function selectFolderFromUser($userId,$fkFolder)
     {
-        $strSQLRequestUser = "SELECT * FROM t_folder WHERE fkUser =? AND fkFolder = ?";
+        $strSQLRequestUser = "SELECT * FROM t_folder WHERE fkUser =? AND fkFolder = ? AND folDeleted =0";
         $query = $this->objectConnection->prepare($strSQLRequestUser);
         $rsResult = $query->execute(array($userId,$fkFolder));
         $getAll = $query->fetchAll();
@@ -551,5 +551,56 @@ class dbfunction
         $query->closeCursor();
         return $isExecuted;
     }
+    /*********************************************
+     * Nom :
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function selectFolderWhereUser($userId)
+    {
+        $strSQLRequestUser = "SELECT * FROM t_folder WHERE fkUser =?";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($userId));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+    /*********************************************
+     * Nom :
+     * But: Afficher les informations de la table t_user
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function selectFolderWhereUserAndFK($userId,$fkFolder)
+    {
+        $strSQLRequestUser = "SELECT * FROM t_folder WHERE fkUser =? AND idFolder !=? AND folDeleted = 0";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute(array($userId,$fkFolder));
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+    /*********************************************
+     * Nom :updateConfirmKey
+     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+    public function updateFlagDeleted ($fk)
+    {
+        $strUpdateSQL = "UPDATE t_folder SET folDeleted = 1 WHERE idFolder =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($fk));
+        $query->closeCursor();
+        return $isExecuted;
+    }
+
+
 
 }

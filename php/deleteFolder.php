@@ -19,7 +19,8 @@ if($idFolder==1)
 }
 else
 {
-    $deleteFolder = $dbConnect->deleteFolder($idFolder);
+    //$deleteFolder = $dbConnect->deleteFolder($idFolder);
+    $updateFlag = $dbConnect->updateFlagDeleted($idFolder);
 
     echo "En cours de suppression...";
 

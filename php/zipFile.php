@@ -7,10 +7,12 @@
  */
 
 $filePath = $_POST['filePath'];
+$fileName = $_POST['fileName'];
 
 $zip = new ZipArchive;
- ($zip->open('../Files/test.zip',ZipArchive::CREATE));
+ ($zip->open('../Files/'.$fileName.'.zip',ZipArchive::CREATE));
     $zip->addFile($filePath, '');
     $zip->close();
 
-header('Location :../Files/test.zip');
+
+header('Refresh :0  ../Files/'.$fileName.'.zip');
