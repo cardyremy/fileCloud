@@ -12,6 +12,17 @@ include_once ('include/dbFunction.inc.php');
 
 $dbConnect = new dbfunction();
 
+$inactive = 300;
+if( !isset($_SESSION['timeout']) )
+    $_SESSION['timeout'] = time() + $inactive;
+
+$session_life = time() - $_SESSION['timeout'];
+
+if($session_life > $inactive)
+{  $msg = "Expiration de la session";
+    session_destroy(); header('Location:index.php');     }
+
+$_SESSION['timeout']=time();
 
 if(!empty($_GET['id']))
 {
@@ -104,6 +115,7 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
             </form>
             <form method="post" action="moveFolder.php" style="padding-left: 15px">
                 <input type="hidden" value="<?php echo $idFromFolder ?>" name="idFolder">
+                <input type="hidden" value="<?php echo $email ?>" name="email">
                 <div class="medium-6 ">
                     <input type="submit" class="button" value="  Move   ">
                 </div>

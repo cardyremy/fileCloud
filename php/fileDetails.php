@@ -6,6 +6,7 @@
 // Date:    18.05.2017
 // But: Page contenant les dossiers des utilisateurs
 //*********************************************************/
+header('Content-Type: text/html; charset=utf-8');
 
 include_once ('include/header.inc.php');
 include_once ('include/dbFunction.inc.php');
@@ -40,6 +41,8 @@ else
     <link href="../css/foundation.min.css" rel="stylesheet" media="all">
     <link href="../css/app.css" rel="stylesheet" media="all">
     <script src="../js/deleteConfirm.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.uploadPreview.min.js"></script>
 </head>
 <body>
 
@@ -55,6 +58,7 @@ else
         </div>
     </div>
 </div>
+
 
 <div class="row">
     <div class="medium-4 columns " style="padding: 0px">
@@ -97,7 +101,7 @@ else
                         echo  date("F d Y H:i:s.", filemtime($path));
                         ?></label>
                 </div>
-                <div class="medium-2 columns">
+                <div class="medium-2 columns ">
                     <label><?php
 
                         $size = '../Files/'.$fileLoadWithID[0]['filPath'];
@@ -112,16 +116,22 @@ else
                      <label>
                          <?php
                          echo $fileLoadWithID[0]['filTag'];
-
                          ?>
                      </label>
                 </div><br>
+                <div>
+                    <div  class="medium-12 column">
+                        <br>
+                        <?php  $section = file_get_contents('../Files/'.$fileLoadWithID[0]['filPath'], NULL, NULL, 20, 14);
 
+                        ?>
+
+                    </div>
+                </div>
             </div>
-
-
         </div>
     </div>
+
 </div>
 <div class="row">
     <div class="medium-4 columns" style="padding: 0px">
@@ -176,6 +186,7 @@ else
 
                 </form>
             </div>
+
 
         </div>
 

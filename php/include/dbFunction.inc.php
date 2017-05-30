@@ -537,4 +537,19 @@ class dbfunction
         return $isExecuted;
     }
 
+    /*********************************************
+     * Nom :
+     * But:
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+    public function updateUserLoginAttemps ($loginAtemps, $useEmail)
+    {
+        $strUpdateSQL = "UPDATE t_user SET useLoginAttemp = ? WHERE useEmail =?";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute(array($loginAtemps, $useEmail));
+        $query->closeCursor();
+        return $isExecuted;
+    }
+
 }
