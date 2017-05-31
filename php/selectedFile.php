@@ -209,7 +209,7 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
                 Maximum 500Mo
             </label>
             <input type="file" id="fileUpload" name="file">
-            <input type="hidden" name="MAX_FILE_SIZE" value="500000000">
+            <input type="hidden" name="MAX_FILE_SIZE" value="524288000">
             <input type="submit" value="submit" class="button">
         </form>
     </div>

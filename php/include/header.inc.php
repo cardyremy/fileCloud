@@ -89,7 +89,7 @@ $userTag = $dbConnect->sendRequestTag($tag,$idUser);
             ?>
                 <div class="row">
                     <div class="medium-12 columns" style="padding: 0px">
-                        <form method="post" action="../selectedFile.php">
+                        <form method="post" action="../php/searchResult.php">
 
                         <div class="input-group input-group-rounded">
                                 <input class="input-group-field" type="search" name="tag">

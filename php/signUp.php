@@ -86,7 +86,7 @@ if (preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,6}$#i', $email))
                             $mail->addCustomHeader('MIME-Version: 1.0');
                             $mail->addCustomHeader('Content-Type: text/html; charset=ISO-8859-1');
 
-
+//$modif = '<a href="http://127.0.0.1/projects/FileCloud/php/confirmMail.php?email='.urlencode($email).'&key='.$key.'">Veuillez cliquer sur ce lien pour confirmer votre inscription </a>';
                             $mail->Body = '<a href="http://127.0.0.1/projects/FileCloud/php/confirmMail.php?email='.urlencode($email).'&key='.$key.'">Veuillez cliquer sur ce lien pour confirmer votre inscription </a>';
 //send the message, check for errors
                             if (!$mail->send()) {

@@ -47,10 +47,9 @@ setcookie('login', $userEmail);
                 if(password_verify($pwd,$userConnect[0]['usePassword']))
                 {
                     session_start();
-                    //print 'Bienvenue !';
+
                     $_SESSION['useEmail']= $userEmail;
                     $_SESSION['usePassword']= $userConnect[0]['usePassword'];
-                    // $_SESSION['useRights'] = $userConnect[0]['useRights'];
                     $msg = "Bienvenue";
                     header('Location:folderPage.php?msg='.htmlspecialchars($msg));
 

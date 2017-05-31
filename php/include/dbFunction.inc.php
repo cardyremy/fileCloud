@@ -12,7 +12,7 @@ header('Content-Type: text/html; charset=utf-8');
 class dbfunction
 {
 // constantes pour la BD
-    const STR_DB_NAME = "db_filecloud";
+    const STR_DB_NAME = "db_filecloud";//"filecloud_inf_etmlnet_local";
 
     /*********************************************
      * Nom : __construct
@@ -507,14 +507,14 @@ class dbfunction
         return $getAll;
     }
     /*********************************************
-     * Nom : sendRequestTag
-     * But:
-     * Retour: $getAll
-     * Paramètre: --
-     * *******************************************/
+ * Nom : sendRequestTag
+ * But:
+ * Retour: $getAll
+ * Paramètre: --
+ * *******************************************/
     public function sendRequestTag($tag,$fkUSer)
     {
-        $strSQLRequestUser = "select * from t_file WHERE filTag like '%$tag%' AND fkFile ='$fkUSer'";
+        $strSQLRequestUser = "select * from t_file WHERE filTag like '%$tag%' OR filName like '%$tag%' AND fkUser ='$fkUSer'";
         $query = $this->objectConnection->prepare($strSQLRequestUser);
         $rsResult = $query->execute();
         $getAll = $query->fetchAll();
@@ -522,6 +522,24 @@ class dbfunction
 
         return $getAll;
     }
+
+    /*********************************************
+     * Nom : sendRequestTag
+     * But:
+     * Retour: $getAll
+     * Paramètre: --
+     * *******************************************/
+    public function sendRequestTagFolder($tag,$fkUSer)
+    {
+        $strSQLRequestUser = "select * from t_folder WHERE folName like '%$tag%' AND fkUser ='$fkUSer'";
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute();
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
     /*********************************************
      * Nom :updateConfirmKey
      * But:Mettre à jour la valeur de confirmation de l'utilisateur

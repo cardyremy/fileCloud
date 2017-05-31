@@ -131,7 +131,6 @@ else
         <div class="neat-article-image">
             <img src="../img/data.jpeg">
         </div>
-
 <?php
         }
         else
