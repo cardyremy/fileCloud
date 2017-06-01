@@ -66,7 +66,22 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
         <div class="medium-6 columns text-right" style="padding-bottom: 20px">
             <a href="createFolderForm.php?id=<?php echo $idFromFolder;?>&fk=<?php for($i=0;$i<count($selectFolder);$i++){echo $selectFolder[$i]['fkFolder'];}?>"><img src="../img/addFold2.png" style="height: 45px;width: 45px"></a>
             <!--<a href="#"><img src="../img/edit.ico" style="height: 45px;width: 45px"></a> -->
-            <a onclick=" return deleteConf('<?php if (isset($_GET['id'])) { echo $selectFolder[0]['folName']; }?>');" href="deleteFolder.php?id=<?php echo $idFromFolder;?>"><img src="../img/delete.ico" style="height: 45px;width: 45px"></a>
+
+            <?php
+
+            if($selectFolder[0]['fkFolder']==NULL)
+            {
+                echo '';
+            }
+            else {
+                ?>
+                <a onclick=" return deleteConf('<?php if (isset($_GET['id'])) {
+                    echo $selectFolder[0]['folName'];
+                } ?>');" href="deleteFolder.php?id=<?php echo $idFromFolder; ?>"><img src="../img/delete.ico"
+                                                                                      style="height: 45px;width: 45px"></a>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>
@@ -86,30 +101,44 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
         </div>
 
         <div class="row ">
-            <form action="renameFolder.php" method="post">
-                <div class="medium-10 columns" style="padding-right: 0px">
-                    <input  type="hidden" name="folName" id="hybrid" value="<?php for($x=0;$x<count($selectFolder);$x++)
-                    {
-                        echo $selectFolder[$x]['folName'];
-                    }?>">
+            <?php
 
-                </div>
-                <div class="medium-10" style="padding-left: 15px">
-                    <input id="button" type="button" onclick=" displayHide();changeType()" class="button" value="Rename">
-                    <div class="hide" id="change">
-                        <input type="submit" id="button" class="button" value="Save" style="padding-right: 20px">
+            if($selectFolder[0]['fkFolder']==NULL)
+            {
+                echo '';
+            }
+            else {
+
+                ?>
+                <form action="renameFolder.php" method="post">
+                    <div class="medium-10 columns" style="padding-right: 0px">
+                        <input type="hidden" name="folName" id="hybrid"
+                               value="<?php for ($x = 0; $x < count($selectFolder); $x++) {
+                                   echo $selectFolder[$x]['folName'];
+                               } ?>">
+
                     </div>
-                </div>
-                <input type="hidden" name="idFolder" value="<?php echo $idFromFolder; ?>">
-            </form>
-            <form method="post" action="moveFolder.php" style="padding-left: 15px">
-                <input type="hidden" value="<?php echo $idFromFolder ?>" name="idFolder">
-                <input type="hidden" value="<?php echo $email ?>" name="email">
-                <div class="medium-6 ">
-                    <input type="submit" class="button" value="  Move   ">
-                </div>
+                    <div class="medium-10" style="padding-left: 15px">
+                        <input id="button" type="button" onclick=" displayHide();changeType()" class="button"
+                               value="Rename">
+                        <div class="hide" id="change">
+                            <input type="submit" id="button" class="button" value="Save" style="padding-right: 20px">
+                        </div>
+                    </div>
+                    <input type="hidden" name="idFolder" value="<?php echo $idFromFolder; ?>">
+                </form>
+                <form method="post" action="moveFolder.php" style="padding-left: 15px">
+                    <input type="hidden" value="<?php echo $idFromFolder ?>" name="idFolder">
+                    <input type="hidden" value="<?php echo $email ?>" name="email">
+                    <div class="medium-6 ">
+                        <input type="submit" class="button" value="  Move   ">
+                    </div>
 
-            </form>
+                </form>
+
+                <?php
+            }
+            ?>
 
         </div>
         <div class="medium-10">
@@ -120,17 +149,12 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
     <div class="medium-8 columns " style="padding: 0px">
         <div class="row">
             <div class="white">
-                <div class="medium-4 columns " >
+                <div class="medium-6 columns " >
                     <p>Name</p>
                 </div>
-                <div class="medium-2 columns ">
-                    <p>Date</p>
-                </div>
-                <div class="medium-2 columns ">
-                    <p>Taille</p>
-                </div>
-                <div class="medium-2 columns ">
-                    <p>Tag</p>
+
+                <div class="medium-6 columns ">
+                    <p>Size</p>
                 </div>
 
                 <div class="medium-6 columns ">
@@ -170,7 +194,31 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
                     </form>
 
                 </div>
-                <div class="medium-4 columns">
+                <div class="medium-6 columns">
+
+                    <?php
+
+                    for($y=0;$y<count($loadFolderFromUser);$y++)
+                    {
+                        echo '-'.'<br>';
+
+
+                    }
+
+
+                    for($x=0;$x<count($loadFileFromUser);$x++)
+                    {
+                        $size = '../Files/'.$loadFileFromUser[$x]['filPath'];
+                        $fileSize = filesize($size);
+                        //Convertir de bytes en MB
+                        echo $convertedFile = round(($fileSize / 1048576), 2)." MB";
+                        echo '<br>';
+                    }
+
+
+
+
+                    ?>
 
                 </div>
                 <div>
@@ -188,10 +236,7 @@ $loadFileFromUser = $dbConnect->selectFileFromUser($id,$idFromFolder);
 <div class="row">
     <div class="medium-4 columns" style="padding: 0px">
 
-
     </div>
-
-
 
     <div class="medium-8 columns"style="padding: 0px">
         <label>

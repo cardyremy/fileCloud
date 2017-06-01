@@ -610,13 +610,140 @@ class dbfunction
      * Retour:$isExecuted
      * Paramètre:
      * *******************************************/
-    public function updateFlagDeleted ($fk)
+    public function updateFlagDeleted ($folDate,$fk)
     {
-        $strUpdateSQL = "UPDATE t_folder SET folDeleted = 1 WHERE idFolder =?";
+        $strUpdateSQL = "UPDATE t_folder SET folDeleted = 1,folDate=? WHERE idFolder =?";
         $query = $this->objectConnection->prepare($strUpdateSQL);
-        $isExecuted = $query->execute(array($fk));
+        $isExecuted = $query->execute(array($folDate,$fk));
         $query->closeCursor();
         return $isExecuted;
+    }
+
+    /*********************************************
+     * Nom : selectAllFromFolder
+     * But: Afficher les informations de la table t_folder
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function checkDeletedFlagOnFolder()
+    {
+        $strSQLRequestUser = "select folDeleted from t_folder WHERE folDeleted=1" ;
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute();
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+    }
+
+    /*********************************************
+     * Nom :deleteFolderPermanently
+     * But: Supprime le contenu de la table t_article en fonction du artBlock et du fkMenu
+     * Retour:$isExecuted
+     * Paramètre:$idFolder
+     * *******************************************/
+    public function deleteFolderPermanently()
+    {
+        $strSQLDrop = "DELETE FROM t_folder WHERE folDeleted=1";
+        $query = $this->objectConnection->prepare($strSQLDrop);
+        $isExecuted = $query->execute();
+        $query->closeCursor();
+
+        return $isExecuted;
+    }
+    /*********************************************
+     * Nom :updateConfirmKey
+     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+    public function updateFlagRestore ()
+    {
+        $strUpdateSQL = "UPDATE t_folder SET folDeleted = 0 WHERE folDeleted =1";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute();
+        $query->closeCursor();
+        return $isExecuted;
+    }
+    /*********************************************
+     * Nom : selectAllFromFolder
+     * But: Afficher les informations de la table t_folder
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function checkDeletedFlagOnFile()
+    {
+        $strSQLRequestUser = "select filDeleted from t_file WHERE filDeleted=1" ;
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute();
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
+
+    }
+
+    /*********************************************
+     * Nom :updateConfirmKey
+     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+    public function updateFlagFile ()
+    {
+        $strUpdateSQL = "UPDATE t_file SET filDeleted = 1 WHERE filDeleted =0";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute();
+        $query->closeCursor();
+        return $isExecuted;
+    }
+    /*********************************************
+     * Nom :deleteFolderPermanently
+     * But: Supprime le contenu de la table t_article en fonction du artBlock et du fkMenu
+     * Retour:$isExecuted
+     * Paramètre:$idFolder
+     * *******************************************/
+    public function deleteFilePermanently()
+    {
+        $strSQLDrop = "DELETE FROM t_file WHERE filDeleted=1";
+        $query = $this->objectConnection->prepare($strSQLDrop);
+        $isExecuted = $query->execute();
+        $query->closeCursor();
+
+        return $isExecuted;
+    }
+    /*********************************************
+     * Nom :updateConfirmKey
+     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Retour:$isExecuted
+     * Paramètre:
+     * *******************************************/
+    public function updateFlagRestoreFile()
+    {
+        $strUpdateSQL = "UPDATE t_file SET filDeleted = 0 WHERE filDeleted =1";
+        $query = $this->objectConnection->prepare($strUpdateSQL);
+        $isExecuted = $query->execute();
+        $query->closeCursor();
+        return $isExecuted;
+    }
+    /*********************************************
+     * Nom : selectAllFromFolder
+     * But: Afficher les informations de la table t_folder
+     * Retour: $getAll
+     * Paramètre: -
+     * *******************************************/
+
+    public function checkDateOnFolder()
+    {
+        $strSQLRequestUser = "select folDate from t_folder WHERE folDeleted=1" ;
+        $query = $this->objectConnection->prepare($strSQLRequestUser);
+        $rsResult = $query->execute();
+        $getAll = $query->fetchAll();
+        $query->closeCursor();
+
+        return $getAll;
     }
 
 

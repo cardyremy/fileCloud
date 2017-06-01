@@ -19,8 +19,12 @@ if($idFolder==1)
 }
 else
 {
+    $date = new DateTime();
+    $today= $date->format('U') . "\n";
+
+
     //$deleteFolder = $dbConnect->deleteFolder($idFolder);
-    $updateFlag = $dbConnect->updateFlagDeleted($idFolder);
+    $updateFlag = $dbConnect->updateFlagDeleted($today,$idFolder);
 
     echo "En cours de suppression...";
 

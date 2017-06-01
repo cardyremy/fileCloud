@@ -4,11 +4,7 @@
 function deleteConf(param)
 {
     var result = confirm("Voulez-vous vraiment supprimer la page "+ param +"?");
-    if(result==true)
-    {
-        deleteDefinitly();
 
-    }
     return result;
 }
 

@@ -27,6 +27,9 @@ $loadFolderData = $dbConnect->selectAllFromFolder();
 
 $loadFileData = $dbConnect->selectAllFromFfile($idFromFolder);
 $selectFolder = $dbConnect->selectFolder($idFromFolder);
+$flag = $dbConnect->checkDeletedFlagOnFolder();
+$flagFile = $dbConnect->checkDeletedFlagOnFile();
+$dateDb = $dbConnect->checkDateOnFolder();
 
 ?>
 
@@ -50,6 +53,84 @@ $selectFolder = $dbConnect->selectFolder($idFromFolder);
         <div class="text-center"><p>Bonjour <?php echo $_SESSION['useEmail'] ?></p></div>
 
         <div class="medium-6 columns">
+            <?php
+            if(!empty($flag))
+            {
+                $date = new DateTime();
+                $today= $date->format('U') . "\n";
+
+            if ($today - $dateDb[0]['folDate'] < 30) {
+
+                ?>
+                <form action="restoreFlagFolder.php">
+                    <input type="submit" class="button" value=" Restore your files   " id="restore">
+                </form>
+
+                <form action="deletePermanentFolder.php">
+                    <input type="submit" class="button" value="Delete Permanently" id="cancel">
+                </form>
+
+            <?php
+
+            }
+            else {
+                header('Location: deletePermanentFolder.php');
+            }
+
+                ?>
+                <script>
+
+                    //setTimeout(mafonction, 5000);
+                    setTimeout(function () {
+                        document.getElementById('restore').type = 'hidden';
+                        document.getElementById('cancel').type = 'hidden';
+                        location.href = 'deletePermanentFolder.php';
+
+                    }, 30000);
+
+
+
+
+                </script>
+
+
+            <?php
+
+
+            }
+            elseif(!empty($flagFile))
+            {
+            ?>
+
+
+
+                <form action="restoreFlagFile.php">
+                    <input type="submit" class="button" value=" Restore your files   " id="restoreFile">
+                </form>
+
+                <form action="deletePermanentFile.php">
+                    <input type="submit" class="button" value="Delete Permanently" id="cancelFile">
+                </form>
+                <script>
+
+                    //setTimeout(mafonction, 5000);
+                    setTimeout(function ()
+                    {
+                        document.getElementById('restoreFile').type = 'hidden';
+                        document.getElementById('cancelFile').type = 'hidden';
+                        location.href = 'deletePermanentFile.php';
+
+                    },30000);
+
+
+                </script>
+
+
+                <?php
+
+            }
+
+            ?>
 
         </div>
 

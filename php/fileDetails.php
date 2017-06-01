@@ -82,7 +82,7 @@ else
                     <p>Date</p>
                 </div>
                 <div class="medium-2 columns ">
-                    <p>Taille</p>
+                    <p>Size</p>
                 </div>
                 <div class="medium-2 columns ">
                     <p>Tag</p>

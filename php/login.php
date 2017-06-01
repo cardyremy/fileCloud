@@ -51,7 +51,7 @@ setcookie('login', $userEmail);
                     $_SESSION['useEmail']= $userEmail;
                     $_SESSION['usePassword']= $userConnect[0]['usePassword'];
                     $msg = "Bienvenue";
-                    header('Location:folderPage.php?msg='.htmlspecialchars($msg));
+                    header('Location:selectedFile.php?id=1');
 
 
                 }else
@@ -129,8 +129,6 @@ setcookie('login', $userEmail);
                             header('Refresh:0 loginForm.php');
                         }
                     }
-
-
 
                 }
             }
