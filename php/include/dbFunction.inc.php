@@ -178,10 +178,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But:
+     * Nom :moveFolder
+     * But: change le nom et le fk d'un dossier
      * Retour:$getAll
-     * Paramètre: $folName,$fkFolder
+     * Paramètre: $folName,$fkFolder,$idFolder
      * *******************************************/
     public function moveFolder($folName,$fkFolder,$idFolder)
     {
@@ -195,10 +195,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But:
+     * Nom : moveFile
+     * But: Change le fkFolder, sert au déplacement des fichiers
      * Retour:$getAll
-     * Paramètre:
+     * Paramètre: $firstFkFile,$secondFkFIle
      * *******************************************/
     public function moveFile($firstFkFile,$secondFkFIle)
     {
@@ -215,9 +215,9 @@ class dbfunction
 
     /*********************************************
      * Nom :updateFile
-     * But:
+     * But: Mettre à jour le nom d'un fichier
      * Retour:$isExecuted
-     * Paramètre:$folderName, $idFolder
+     * Paramètre:$fileName,$idFile
      * *******************************************/
     public function updateFile ($fileName,$idFile)
     {
@@ -231,7 +231,7 @@ class dbfunction
 
     /*********************************************
      * Nom : selectFolderFK
-     * But: Afficher les informations de la table t_user
+     * But: Afficher les informations de la table t_folder
      * Retour: $getAll
      * Paramètre: -
      * *******************************************/
@@ -248,10 +248,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But:
+     * Nom : fileUpload
+     * But: Ajout d'un fichier
      * Retour:$getAll
-     * Paramètre: $folName,$fkFolder
+     * Paramètre: $fileName,$filePath,$filTag,$fkUser,$fkFolder
      * *******************************************/
     public function fileUpload($fileName,$filePath,$filTag,$fkUser,$fkFolder)
     {
@@ -266,9 +266,9 @@ class dbfunction
     }
     /*********************************************
      * Nom :updateFolderFileCheck
-     * But:
-     * Retour:$isExecuted
-     * Paramètre:$folFileUpdate, $idFolder
+     * But: Mettre à jour le champ folFleCheck
+     * Retour: $isExecuted
+     * Paramètre: $folFileUpdate, $idFolder
      * *******************************************/
     public function updateFolderFileCheck ($folFileUpdate, $idFolder)
     {
@@ -281,10 +281,10 @@ class dbfunction
 
 
     /*********************************************
-     * Nom :
-     * But: Afficher les informations de la table t_user
+     * Nom : selectFileID
+     * But: Afficher les informations de la table t_file
      * Retour: $getAll
-     * Paramètre: -
+     * Paramètre: $id
      * *******************************************/
 
     public function selectFileID($id)
@@ -299,10 +299,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But:
+     * Nom : updateFileMove
+     * But: Mettre à jour le fkFolder en fonction de l'id du fichier.
      * Retour:$isExecuted
-     * Paramètre:$folFileUpdate, $idFolder
+     * Paramètre:$fkFolder, $idFile
      * ******************************************/
     public function updateFileMove ($fkFolder, $idFile)
     {
@@ -314,10 +314,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But: Afficher les informations de la table t_user
+     * Nom : fileCheckMoreThanOne
+     * But: Affiche le fkFlder de la table t_file
      * Retour: $getAll
-     * Paramètre: -
+     * Paramètre: $id
      * *******************************************/
 
     public function fileCheckMoreThanOne($id)
@@ -332,10 +332,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But:
+     * Nom : deleteFile
+     * But: Supprimmer un fichier
      * Retour:$isExecuted
-     * Paramètre:$idFolder
+     * Paramètre:$idFile
      * *******************************************/
     public function deleteFile($idFile)
     {
@@ -349,9 +349,9 @@ class dbfunction
 
     /*********************************************
      * Nom : sendRequestUser
-     * But: Afficher toutes les information de l'utilisateur qui est en parametre
+     * But: Afficher toutes les information de l'utilisateur
      * Retour:$getAll
-     * Paramètre:$username
+     * Paramètre:$userEmail
      * *******************************************/
     public function sendRequestUser($userEmail=null)
     {
@@ -366,9 +366,9 @@ class dbfunction
 
     /*********************************************
      * Nom :usernameCheck
-     * But:Verifier que l'utilisateur existe dans la BD
+     * But: Verifier que l'utilisateur existe dans la BD
      * Retour:$getAll
-     * Paramètre:$usernameCheck
+     * Paramètre:$userEmailCheck
      * *******************************************/
     public function usernameCheck ($userEmailCheck)
     {
@@ -383,10 +383,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But: Afficher les informations de la table t_user
+     * Nom : selectFolderFromUser
+     * But: Afficher les informations de la table t_folder en fonction de l'utilisteur
      * Retour: $getAll
-     * Paramètre: -
+     * Paramètre: $userId,$fkFolder
      * *******************************************/
 
     public function selectFolderFromUser($userId,$fkFolder)
@@ -400,10 +400,10 @@ class dbfunction
         return $getAll;
     }
     /*********************************************
-     * Nom :
-     * But:Verifier que l'utilisateur existe dans la BD
+     * Nom : selectUserFromSession
+     * But: Affiche l'id de l'utilisateur
      * Retour:$getAll
-     * Paramètre:$usernameCheck
+     * Paramètre:$userEmail
      * *******************************************/
     public function selectUserFromSession ($userEmail)
     {
@@ -418,10 +418,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But: Afficher les informations de la table t_user
+     * Nom : selectFileFromUser
+     * But: Afficher les informations de la table t_file en fonction de l'utilisateur
      * Retour: $getAll
-     * Paramètre: -
+     * Paramètre: $userId,$fkFolder
      * *******************************************/
 
     public function selectFileFromUser($userId,$fkFolder)
@@ -458,7 +458,7 @@ class dbfunction
      * Nom :updateConfirmKey
      * But:Mettre à jour la valeur de confirmation de l'utilisateur
      * Retour:$isExecuted
-     * Paramètre:
+     * Paramètre: $useEmail
      * *******************************************/
     public function updateConfirmKey ($useEmail)
     {
@@ -469,10 +469,10 @@ class dbfunction
         return $isExecuted;
     }
     /*********************************************
-     * Nom :
-     * But:
-     * Retour:$isExecuted
-     * Paramètre:
+     * Nom : newUser
+     * But: Incription nouvel utilisateur
+     * Retour:$getAll
+     * Paramètre: $userName,$userEmail,$userPwd,$userToken
      * *******************************************/
 
     public function newUser($userName,$userEmail,$userPwd,$userToken)
@@ -490,8 +490,8 @@ class dbfunction
 
 
     /*********************************************
-     * Nom :emailCheckUser
-     * But:Verifier que l'email existe dans la BD
+     * Nom :tokenCheck
+     * But: affiche la valeur du token
      * Retour:$getAll
      * Paramètre:$useEmail
      * *******************************************/
@@ -508,9 +508,9 @@ class dbfunction
     }
     /*********************************************
  * Nom : sendRequestTag
- * But:
+ * But: Afficher des information lors d'une recherche d'un fichier
  * Retour: $getAll
- * Paramètre: --
+ * Paramètre: $tag,$fkUSer
  * *******************************************/
     public function sendRequestTag($tag,$fkUSer)
     {
@@ -524,10 +524,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom : sendRequestTag
-     * But:
+     * Nom : sendRequestTagFolder
+     * But: Afficher des information lors d'une recherche d'un dossier
      * Retour: $getAll
-     * Paramètre: --
+     * Paramètre: $tag,$fkUSer
      * *******************************************/
     public function sendRequestTagFolder($tag,$fkUSer)
     {
@@ -541,10 +541,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :updateConfirmKey
-     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Nom :updateUserPassword
+     * But:Mettre à jour la valeur du mot de passe de l'utilisateur
      * Retour:$isExecuted
-     * Paramètre:
+     * Paramètre: $usePassword,$useEmail
      * *******************************************/
     public function updateUserPassword ($usePassword,$useEmail)
     {
@@ -556,10 +556,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :
-     * But:
+     * Nom : updateUserLoginAttemps
+     * But: Mettre à jour la valeur de tentatives de connections de l'utilisateur
      * Retour:$isExecuted
-     * Paramètre:
+     * Paramètre: $loginAtemps, $useEmail
      * *******************************************/
     public function updateUserLoginAttemps ($loginAtemps, $useEmail)
     {
@@ -570,10 +570,10 @@ class dbfunction
         return $isExecuted;
     }
     /*********************************************
-     * Nom :
-     * But: Afficher les informations de la table t_user
+     * Nom : selectFolderWhereUser
+     * But: Afficher les informations de la table t_folder en fonction de l'utilisateur
      * Retour: $getAll
-     * Paramètre: -
+     * Paramètre: $userId
      * *******************************************/
 
     public function selectFolderWhereUser($userId)
@@ -587,10 +587,10 @@ class dbfunction
         return $getAll;
     }
     /*********************************************
-     * Nom :
-     * But: Afficher les informations de la table t_user
+     * Nom : selectFolderWhereUserAndFK
+     * But: Afficher les informations de la table t_folder en fonction d'un utilisateur et different du dossier séléctionné
      * Retour: $getAll
-     * Paramètre: -
+     * Paramètre: $userId,$fkFolder
      * *******************************************/
 
     public function selectFolderWhereUserAndFK($userId,$fkFolder)
@@ -605,10 +605,10 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :updateConfirmKey
-     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Nom :updateFlagDeleted
+     * But:Mettre à jour la valeur folDeleted
      * Retour:$isExecuted
-     * Paramètre:
+     * Paramètre: $folDate,$fk
      * *******************************************/
     public function updateFlagDeleted ($folDate,$fk)
     {
@@ -620,8 +620,8 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom : selectAllFromFolder
-     * But: Afficher les informations de la table t_folder
+     * Nom : checkDeletedFlagOnFolder
+     * But: Affiche le champ folDeleted du dissier
      * Retour: $getAll
      * Paramètre: -
      * *******************************************/
@@ -639,9 +639,9 @@ class dbfunction
 
     /*********************************************
      * Nom :deleteFolderPermanently
-     * But: Supprime le contenu de la table t_article en fonction du artBlock et du fkMenu
+     * But: Supprime le contenu de la table t_folder en fonction du folDeleted
      * Retour:$isExecuted
-     * Paramètre:$idFolder
+     * Paramètre:
      * *******************************************/
     public function deleteFolderPermanently()
     {
@@ -653,8 +653,8 @@ class dbfunction
         return $isExecuted;
     }
     /*********************************************
-     * Nom :updateConfirmKey
-     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Nom :updateFlagRestore
+     * But:Mettre à jour la valeur folDeleted
      * Retour:$isExecuted
      * Paramètre:
      * *******************************************/
@@ -667,8 +667,8 @@ class dbfunction
         return $isExecuted;
     }
     /*********************************************
-     * Nom : selectAllFromFolder
-     * But: Afficher les informations de la table t_folder
+     * Nom : checkDeletedFlagOnFile
+     * But: Affiche le champ filDeleted d'un fichier
      * Retour: $getAll
      * Paramètre: -
      * *******************************************/
@@ -686,8 +686,8 @@ class dbfunction
     }
 
     /*********************************************
-     * Nom :updateConfirmKey
-     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Nom :updateFlagFile
+     * But:Mettre à jour la valeur filDeleted
      * Retour:$isExecuted
      * Paramètre:
      * *******************************************/
@@ -700,10 +700,10 @@ class dbfunction
         return $isExecuted;
     }
     /*********************************************
-     * Nom :deleteFolderPermanently
-     * But: Supprime le contenu de la table t_article en fonction du artBlock et du fkMenu
+     * Nom :deleteFilePermanently
+     * But: Supprime un fichier
      * Retour:$isExecuted
-     * Paramètre:$idFolder
+     * Paramètre:
      * *******************************************/
     public function deleteFilePermanently()
     {
@@ -715,8 +715,8 @@ class dbfunction
         return $isExecuted;
     }
     /*********************************************
-     * Nom :updateConfirmKey
-     * But:Mettre à jour la valeur de confirmation de l'utilisateur
+     * Nom :updateFlagRestoreFile
+     * But:Mettre à jour la valeur filDeleted
      * Retour:$isExecuted
      * Paramètre:
      * *******************************************/
@@ -729,8 +729,8 @@ class dbfunction
         return $isExecuted;
     }
     /*********************************************
-     * Nom : selectAllFromFolder
-     * But: Afficher les informations de la table t_folder
+     * Nom : checkDateOnFolder
+     * But: Mettre à jour le champ folDate
      * Retour: $getAll
      * Paramètre: -
      * *******************************************/

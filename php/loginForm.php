@@ -94,7 +94,7 @@ else
         <div class="row">
             <div class="medium-6  large-4 large-centered columns border-1">
 
-                <form method="POST" action="login.php" onclick="check();" name="formLogin">
+                <form method="POST" action="login.php" onclick="return exefunction();" name="formLogin">
                     <div class="row">
                         <h4 class="text-center ">Log in with your Email Address</h4>
                         <label>Email Address
@@ -113,15 +113,27 @@ else
                                 <input class="input-group-field" type="password" placeholder="Password" name="password">
                             </div>
                         </label>
-                        <div class="g-recaptcha" data-sitekey="6LfjQiMUAAAAAKIudmgrhXuixzILnaKYX3J50gaO" id="recaptcha" ></div>
+                        <div class="g-recaptcha" data-sitekey="6LfjQiMUAAAAAKIudmgrhXuixzILnaKYX3J50gaO" id="checked"  ></div>
 
                         <input class="button expanded"  type="submit" name="btnLogin" value="Log In" />
                         <p class="text-center"><a href="forgotPasswordForm.php">Forgot your password?</a></p>
                         <p class="text-center"><a href="index.php">Create an account</a></p>
                     </div>
                 </form>
-                <script src="../js/captchaCheck.js"></script>
 
+                <?php
+
+
+                ?>
+
+                <script src="../js/captchaCheck.js"></script>
+                <script>
+                    if (grecaptcha.getResponse() == ""){
+                        alert("You can't proceed!");
+                    } else {
+                        alert("Thank you");
+                    }
+                </script>
             </div>
         </div>
 
@@ -170,6 +182,7 @@ else
                         <p class="text-center"><a href="index.php">Create an account</a></p>
                     </div>
                 </form>
+
 
             </div>
         </div>

@@ -1,12 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 17.05.2017
- * Time: 13:24
- */
 
-
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    17.05.2017
+// But:     Deplacement dossiers
+//*********************************************************/
 include_once ('include/dbFunction.inc.php');
 
 $idFolder = $_POST['idFolder'];

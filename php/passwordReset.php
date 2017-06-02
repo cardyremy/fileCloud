@@ -1,10 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 23.05.2017
- * Time: 13:40
- */
+
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    23.05.2017
+// But:     Mettre à jour le mot de passe
+//*********************************************************/
 
 include_once ('include/dbFunction.inc.php');
 $dbConnect = new dbfunction();

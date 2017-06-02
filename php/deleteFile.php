@@ -1,10 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 19.05.2017
- * Time: 08:40
- */
+
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    19.05.2017
+// But:     Met à jour le flag de suppression dans la base de donnée
+//*********************************************************/
+
+
 include_once ('include/dbFunction.inc.php');
 
 $idFile = $_GET['id'];

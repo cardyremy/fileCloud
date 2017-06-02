@@ -1,10 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 23.05.2017
- * Time: 10:51
- */
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    23.05.2017
+// But: Confirmation du mail
+//*********************************************************/
+
 include_once ('include/dbFunction.inc.php');
 
 $dbConnect = new dbfunction();
@@ -18,6 +19,7 @@ $checkToken = $dbConnect->tokenCheck($email);
 
 for($i=0;$i<count($checkToken);$i++)
 {
+    //Comparaison du token recu par email avec celui de la BD
     if($checkToken[$i]['useToken'] == $key)
     {
         $confirmEmail = $dbConnect->updateConfirmKey($email);

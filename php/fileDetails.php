@@ -128,7 +128,7 @@ else
                         <?php
 
                         $FILE_PATH = '../Files/'.$fileLoadWithID[0]['filPath'];
-
+                        //Affichage du contenu des fichiers
                         if(pathinfo($FILE_PATH, PATHINFO_EXTENSION) == 'txt' || pathinfo($FILE_PATH, PATHINFO_EXTENSION) == 'rtf' && filesize($FILE_PATH) < 1048576 )
                         {
                             echo $section = file_get_contents('../Files/'.$fileLoadWithID[0]['filPath'], NULL, NULL, 20, 100);

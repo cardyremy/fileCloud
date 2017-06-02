@@ -1,10 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 24.05.2017
- * Time: 13:58
- */
+
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    24.05.2017
+// But:     Mettre à jour le mot de passe
+//*********************************************************/
 
 include_once 'include/dbFunction.inc.php';
 $dbConnect = new dbfunction();
@@ -12,6 +13,7 @@ $dbConnect = new dbfunction();
 $newPassword = $_POST['pwd1'];
 $retypePassword = $_POST['pwd2'];
 $email = $_POST['email'];
+
 
 if($newPassword==$retypePassword)
 {

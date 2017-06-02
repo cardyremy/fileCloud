@@ -1,18 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 15.05.2017
- * Time: 15:39
- */
+
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    15.05.17
+// But:     Form pour le déplacement des dossiers
+//*********************************************************/
 include_once ('include/dbFunction.inc.php');
 
 $dbConnect = new dbfunction();
 $loadFolderNames = $dbConnect->selectAllFromFolder();
 
+//Déclaration variables
 $email = $_POST['email'];
-
 $idFolder = $_POST['idFolder'];
+
 $selectFolder = $dbConnect->selectFolder($idFolder);
 $idUser = $dbConnect->sendRequestUser($email) ;
 $id = $idUser[0]['idUser'];

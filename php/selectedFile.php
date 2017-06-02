@@ -10,6 +10,7 @@
 include_once ('include/header.inc.php');
 include_once ('include/dbFunction.inc.php');
 
+//Nouvelle instance
 $dbConnect = new dbfunction();
 
 
@@ -23,16 +24,20 @@ else
     $idFromFolder =1;
 }
 
+//Affichage informations dossier
 $loadFolderData = $dbConnect->selectAllFromFolder();
 
+//affichage informations fichiers
 $loadFileData = $dbConnect->selectAllFromFfile($idFromFolder);
+
 $selectFolder = $dbConnect->selectFolder($idFromFolder);
 $selectFolderFk = $dbConnect->selectFolderFK($idFromFolder);
 
-
+//Déclaration variable mail
 $email = $_SESSION['useEmail'];
 $idUser = $dbConnect->sendRequestUser($email) ;
 
+//Déclaration variable id
 $id= $idUser[0]['idUser'];
 
 $loadFolderFromUser = $dbConnect->selectFolderFromUser($id,$idFromFolder);

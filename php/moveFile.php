@@ -1,23 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 19.05.2017
- * Time: 08:17
- */
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    19.05.2017
+// But:     Déplacement de fichier
+//*********************************************************/
 include_once ('include/dbFunction.inc.php');
 $idFile = $_POST['id'];
 
 
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
+//Recupèration donnés sur les dossiers
 $loadFolderNames = $dbConnect->selectAllFromFolder();
 
+//Déclaration variable email
 $email = $_POST['email'];
 
-
+//Récuperation informations en fonction du mail
 $idUser = $dbConnect->sendRequestUser($email) ;
+//Déclaration variable id
 $id = $idUser[0]['idUser'];
 
+//Affichage dossier en fonction de l'utilisateur
 $loadFolderFromUser = $dbConnect->selectFolderWhereUser($id);
 
 

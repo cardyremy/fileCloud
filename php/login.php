@@ -1,18 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 22.05.2017
- * Time: 08:28
- */
 
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    22.05.2017
+// But:     Login de l'utilisateur
+//*********************************************************/
 include_once ('include/dbFunction.inc.php');
+
+//Declaration nouvelle instance
 $dbConnect = new dbfunction();
+//Hashage du mot de passe
 $pass= password_hash('.Etml-',PASSWORD_DEFAULT);
+
+//declaration variables
 $userEmail = htmlentities($_POST['userEmail']);
 $pwd = htmlentities($_POST['password']);
 
+//Affiche les informations de l'utilisateur
 $userConnect = $dbConnect->sendRequestUser($userEmail);
+
 $userCheck = $dbConnect->usernameCheck($userEmail);
 $error=''; // Variable d'erreur
 $msg="";
@@ -21,9 +28,10 @@ $checkLoginAttemp = $userLoginCheck[0]['useLoginAttemp'];
 
 setcookie('login', $userEmail);
 
-
+    //Verifie que les champs on été remplis
     if (isset($_POST))
     {
+        //Verifie les champ du mail et du mot de passe
         if (empty($userEmail) || empty($pwd))
         {
             $msg = "Veuillez introduire votre nom d'utilisateur et mot de passe !";
@@ -35,6 +43,7 @@ setcookie('login', $userEmail);
             $msg = "L'utilisateur n'existe pas!";
             header('Location:loginForm.php?msg='.htmlspecialchars($msg));
         }
+        //Verifi si l'utilisateur est confirmé
         else if($userConnect[0]['useConfirm'] != 1)
         {
             $msg= 'Lutilisateur nas pas encore été confirmé ! Veuillez verifier votre boite email';
@@ -44,10 +53,12 @@ setcookie('login', $userEmail);
         {
             if(!empty($userConnect))
             {
+                //Vérifie le mot de passe
                 if(password_verify($pwd,$userConnect[0]['usePassword']))
                 {
                     session_start();
 
+                    //Déclaration variables de session
                     $_SESSION['useEmail']= $userEmail;
                     $_SESSION['usePassword']= $userConnect[0]['usePassword'];
                     $msg = "Bienvenue";
@@ -56,6 +67,7 @@ setcookie('login', $userEmail);
 
                 }else
                 {
+                    //Verifie le nombre de connections erronés
                     if($checkLoginAttemp < 5)
                     {
 
@@ -76,6 +88,7 @@ setcookie('login', $userEmail);
                         }*/
 
                     }
+                    //Envoie du mail pour débloquer le compte
                     else
                     {
                         $msg = "L'utilisateur a été bloqué, un email pour débloquer la session a été envoyé";

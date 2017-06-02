@@ -3,7 +3,7 @@
 // Societe: ETML
 // Auteur:  Cardy Remy
 // Date:    12.05.2017
-// But:
+// But:     Création de dossier
 //*********************************************************/
 
 include_once ('include/header.inc.php');

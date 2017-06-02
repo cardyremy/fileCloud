@@ -1,15 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 19.05.2017
- * Time: 11:55
- */
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    19.05.2017
+// But:     Renommer les fichiers
+//*********************************************************/
 
 include_once ('include/dbFunction.inc.php');
 
 $dbConnect = new dbfunction();
 
+//Déclaration variables
 $fileName = $_POST['filName'];
 $idFile = $_POST['idFile'];
 

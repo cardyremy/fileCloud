@@ -1,10 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 01.06.2017
- * Time: 09:56
- */
+
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    01.06.2017
+// But:     Supression des dossiers
+//*********************************************************/
 
 include_once ('include/dbFunction.inc.php');
 

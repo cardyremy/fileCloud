@@ -10,6 +10,7 @@
 include_once ('include/header.inc.php');
 include_once ('include/dbFunction.inc.php');
 
+//Déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
 
@@ -23,12 +24,17 @@ else
     $idFromFolder =1;
 }
 
+//etourne les information des dossiers
 $loadFolderData = $dbConnect->selectAllFromFolder();
-
+//Retourne les informations des fichiers
 $loadFileData = $dbConnect->selectAllFromFfile($idFromFolder);
+//Affiche le dossier séléctionné
 $selectFolder = $dbConnect->selectFolder($idFromFolder);
+//Verifie le flag de suppression d'un dossier
 $flag = $dbConnect->checkDeletedFlagOnFolder();
+//Verifie le flag de suppression d'un fichier
 $flagFile = $dbConnect->checkDeletedFlagOnFile();
+//Retourne la date inscrite dans la BD
 $dateDb = $dbConnect->checkDateOnFolder();
 
 ?>

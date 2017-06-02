@@ -1,11 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 19.05.2017
- * Time: 13:26
- */
-
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    19.05.2017
+// But:     Créaion de zip automatique
+//*********************************************************/
 $filePath = $_POST['filePath'];
 $fileName = $_POST['fileName'];
 

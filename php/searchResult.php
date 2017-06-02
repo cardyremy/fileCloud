@@ -12,6 +12,7 @@ include_once ('include/dbFunction.inc.php');
 
 $dbConnect = new dbfunction();
 
+
 if(!empty($_GET['id']))
 {
     $idFromFolder = $_GET['id'];

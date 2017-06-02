@@ -1,10 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 23.05.2017
- * Time: 13:36
- */
+
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    23.05.2017
+// But:     Form pour l'oubli de mot de passe
+//*********************************************************/
 
 include_once ('include/header.inc.php');
 

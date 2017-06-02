@@ -9,6 +9,7 @@ include_once ('include/dbFunction.inc.php');
 
 $dbConnect = new dbfunction();
 
+//Déclaration variables
 $fullName = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];

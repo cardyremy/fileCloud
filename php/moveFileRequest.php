@@ -1,16 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 19.05.2017
- * Time: 08:27
- */
+
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    19.05.17
+// But:     Déplacement des fichiers
+//*********************************************************/
 include_once ('include/dbFunction.inc.php');
 
 $idFile = $_POST['id'];
 $folderDestination = $_POST['destinationFolder'];
 
-
+//Déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
 $updateDbForMove = $dbConnect->updateFileMove($folderDestination,$idFile);

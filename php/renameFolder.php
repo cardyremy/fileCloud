@@ -1,18 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cardyre
- * Date: 15.05.2017
- * Time: 10:52
- */
-
+/**********************************************************
+// Societe: ETML
+// Auteur:  Cardy Remy
+// Date:    15.05.2017
+// But:     Renommer un dossier
+//*********************************************************/
 include ('include/dbFunction.inc.php');
 
+//Nouvelle instance
 $dbConnect = new dbfunction();
+
+//Déclaration variables
 $folderName = $_POST['folName'];
 $idFolder = $_POST['idFolder'];
 
-
+//Mets à jour le nom du dossier
 $updateFolder = $dbConnect->updateFolder($folderName,$idFolder);
 
 ?>

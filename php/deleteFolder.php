@@ -3,7 +3,7 @@
 // Societe: ETML
 // Auteur:  Cardy Remy
 // Date:    15.05.2017
-// But:
+// But:     Mettre à jour le flag de suppression dans la base de donné
 //*********************************************************/
 
 include_once ('include/dbFunction.inc.php');
