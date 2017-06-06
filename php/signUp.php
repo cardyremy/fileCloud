@@ -14,10 +14,10 @@ $fullName = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-
+//appel fonction
 $emailCheck = $dbConnect->emailCheckUser($email);
 
-
+//verification de l'email
 if (preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,6}$#i', $email))
 {
     if(count($emailCheck)>0)

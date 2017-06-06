@@ -22,7 +22,7 @@ $updateFolder = $dbConnect->updateFolder($folderName,$idFolder);
 <?php
 
 
-
+//message pour patienter
 echo "Veuillez patienter...";
 header('Refresh:1 folderPage.php?id='.$idFolder.'')
 

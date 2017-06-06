@@ -19,7 +19,7 @@ $pwd = htmlentities($_POST['password']);
 
 //Affiche les informations de l'utilisateur
 $userConnect = $dbConnect->sendRequestUser($userEmail);
-
+//appel fonction de verification email
 $userCheck = $dbConnect->usernameCheck($userEmail);
 $error=''; // Variable d'erreur
 $msg="";

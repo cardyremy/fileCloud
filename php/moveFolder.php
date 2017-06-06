@@ -6,19 +6,25 @@
 // Date:    15.05.17
 // But:     Form pour le déplacement des dossiers
 //*********************************************************/
+//inclusion classe
 include_once ('include/dbFunction.inc.php');
 
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
+//Appel fonction
 $loadFolderNames = $dbConnect->selectAllFromFolder();
 
 //Déclaration variables
 $email = $_POST['email'];
 $idFolder = $_POST['idFolder'];
 
+//Appel fonction
 $selectFolder = $dbConnect->selectFolder($idFolder);
 $idUser = $dbConnect->sendRequestUser($email) ;
+//déclaration variable
 $id = $idUser[0]['idUser'];
 
+//Appel fonction
 $loadFolderFromUser = $dbConnect->selectFolderWhereUserAndFK($id,$idFolder);
 
 ?>

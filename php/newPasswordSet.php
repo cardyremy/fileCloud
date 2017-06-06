@@ -6,15 +6,17 @@
 // Date:    24.05.2017
 // But:     Mettre à jour le mot de passe
 //*********************************************************/
-
+//inclusion classe
 include_once 'include/dbFunction.inc.php';
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
+//déclaration variables
 $newPassword = $_POST['pwd1'];
 $retypePassword = $_POST['pwd2'];
 $email = $_POST['email'];
 
-
+//verification mot de passe
 if($newPassword==$retypePassword)
 {
     if(preg_match('#\d#',$newPassword))

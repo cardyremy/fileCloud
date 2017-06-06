@@ -8,6 +8,8 @@
 
 include_once ('include/header.inc.php');
 
+
+//Déclaration variable id et fk
 $idFolder = $_GET['id'];
 $fkFolder = $_GET['fk'];
 

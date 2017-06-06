@@ -5,8 +5,10 @@
 // Date:    10.05.2017
 // But: Page de login du site
 //*********************************************************/
+//inclusion header
 include_once('include/header.inc.php');
 
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
 ?>
@@ -198,6 +200,6 @@ else
 
         }
     }
-
+//inclusion footer
 include_once('include/footer.inc.php');
 ?>

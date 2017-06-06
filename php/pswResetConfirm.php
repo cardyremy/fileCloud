@@ -6,15 +6,21 @@
 // Date:    24.05.2017
 // But:
 //*********************************************************/
+//inclusion classe
 include_once ('include/dbFunction.inc.php');
+
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
+//déclaration variables
 $key = $_GET['key'];
 $email = $_GET['email'];
 
+//ppel fonctions
 $loadKeyFromDB = $dbConnect-> sendRequestUser($email);
 $keyLoad = $loadKeyFromDB[0]['useToken'];
 
+//Si la clé correspond
 if($keyLoad==$key)
 {
 include_once ('include/header.inc.php');

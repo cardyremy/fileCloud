@@ -14,9 +14,10 @@ $dbConnect = new dbfunction();
 $fileName = $_POST['filName'];
 $idFile = $_POST['idFile'];
 
-
+//appel fonction
 $renameFile = $dbConnect->updateFile($fileName,$idFile);
 
+//Message de modification
 echo'En cours de modification...';
 
 header('Refresh:1 folderPage.php');

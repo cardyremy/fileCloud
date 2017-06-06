@@ -7,12 +7,14 @@
 // But:     Met à jour le flag de suppression dans la base de donnée
 //*********************************************************/
 
-
+//inclusion de la classe
 include_once ('include/dbFunction.inc.php');
 
+//déclaration variable id et fk
 $idFile = $_GET['id'];
 $fkFolder = $_GET['fk'];
 
+//déclaration nouvelle instance
 $dbConnect =new dbfunction();
 
 /*
@@ -44,9 +46,12 @@ for($i=0;$i<count($loadFilesFromFolder);$i++)
 */
 
 
+//appel fonction
 $updateFlagFile  = $dbConnect->updateFlagFile();
 
-
+//message de suppression
 echo 'En cours de suppression...';
+
+//redirection
 header('Refresh:1 folderPage.php');
 

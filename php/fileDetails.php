@@ -6,17 +6,23 @@
 // Date:    18.05.2017
 // But: Page contenant les dossiers des utilisateurs
 //*********************************************************/
+
 header('Content-Type: text/html; charset=utf-8');
 
+//inclusion fichiers
 include_once ('include/header.inc.php');
 include_once ('include/dbFunction.inc.php');
 
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
+//déclaration variable id
 $idFile = $_GET['id'];
 
+//appel fonction
 $fileLoadWithID = $dbConnect->selectFileID($idFile);
 
+//attribution ID
 if(!empty($_GET['id']))
 {
     $idFromFolder = $_GET['id'];

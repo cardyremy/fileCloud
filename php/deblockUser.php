@@ -8,11 +8,15 @@
 //*********************************************************/
 include_once ('include/dbFunction.inc.php');
 
+//declaration variable email
 $useEmail = $_GET['email'];
 
+//Déclaration nouvelle instance
 $dbConnect = new dbfunction();
 $useLogin = 0;
+
+//Appel fonction
 $updateUserAttemp = $dbConnect->updateUserLoginAttemps($useLogin,$useEmail);
 
-
+//inclusion header
 header('Location: loginForm.php');

@@ -7,12 +7,15 @@
 // But: Page contenant les dossiers des utilisateurs
 //*********************************************************/
 
+//inclusuion fichiers
 include_once ('include/header.inc.php');
 include_once ('include/dbFunction.inc.php');
 
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
 
+//Id dossier racine
 if(!empty($_GET['id']))
 {
     $idFromFolder = $_GET['id'];
@@ -23,12 +26,17 @@ else
     $idFromFolder =1;
 }
 
+//Déclaration variables
 $tag = $_POST['tag'];
 
 $email = $_SESSION['useEmail'];
+
+//appel fonction
 $userId = $dbConnect->sendRequestUser($email);
 $id = $userId[0]['idUser'];
+//appel fonction
 $loadTagData = $dbConnect->sendRequestTag($tag,$id);
+//appel fonction
 $loadFolderTag = $dbConnect->sendRequestTag($tag,$id);
 
 

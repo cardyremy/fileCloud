@@ -9,10 +9,16 @@
 session_start();
 
 
+//Deconnection du login au bout de 5min
+
+//Déclaration variable temps
 $inactive = 300;
+
+//Vérification de variable session timout
 if( !isset($_SESSION['timeout']) )
     $_SESSION['timeout'] = time() + $inactive;
 
+//déclaration varriable session_lofe
 $session_life = time() - $_SESSION['timeout'];
 
 if($session_life > $inactive)
@@ -43,12 +49,24 @@ $userTag = $dbConnect->sendRequestTag($tag,$idUser);
         <div class="row">
 
             <div class="medium-1 columns" style="padding: 0px">
-                <h4>FileCloud</h4>
+
+                <?php
+                //Redirection en fonction de login
+                if(!isset($_SESSION['useEmail']))
+                {
+                    echo' <a href="index.php"><h4>FileCloud</h4></a>';
+                }
+                else
+                {
+                    echo' <a href="folderPage.php"><h4>FileCloud</h4></a>';
+                }
+                ?>
 
             </div>
             <div class="medium-1 columns text-left">
 
                 <?php
+                //Redirection en fonction de login
                 if(!isset($_SESSION['useEmail']))
                 {
                     echo'<a href="index.php"><img src="../img/cloudLogo.png" style="width: 35px;height: 35px"></a>';
@@ -63,6 +81,9 @@ $userTag = $dbConnect->sendRequestTag($tag,$idUser);
 
             <div class="medium-10 columns text-right" style="padding: 0px">
                 <?php
+
+
+                //Redirection en fonction de login
                 if(!isset($_SESSION['useEmail']))
                 {
                 ?>

@@ -6,22 +6,27 @@
 // Date:    12.05.2017
 // But:     Upload de fichiers
 //*********************************************************/
+//inclusion classe
 include_once ('include/dbFunction.inc.php');
 
+//début session
 session_start();
+
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
+//déclaration variables
 $tag = $_POST['tag'];
-
 $name = $_POST['nom'];
 $idFolder = $_POST['id'];
 $userEmail = $_SESSION['useEmail'];
 
+//appel fonction
 $loadUserId= ($dbConnect->selectUserFromSession($userEmail));
 
 $idUser = $loadUserId[0]['idUser'];
 
-
+//Verification si le fichier est présent
 if(!empty($_FILES['file']))
 {
     // Constantes

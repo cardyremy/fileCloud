@@ -13,7 +13,7 @@ include_once ('include/dbFunction.inc.php');
 //Déclaration nouvelle instance
 $dbConnect = new dbfunction();
 
-
+//attribution id dossier racine
 if(!empty($_GET['id']))
 {
     $idFromFolder = $_GET['id'];

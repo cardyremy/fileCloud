@@ -7,11 +7,14 @@
 // But:     Mettre à jour le mot de passe
 //*********************************************************/
 
+//inclusion classe
 include_once ('include/dbFunction.inc.php');
 $dbConnect = new dbfunction();
 
+//déclaration variables
 $email = $_POST['userEmail'];
 
+//Appel fonction
 $loadKeyForPassword = $dbConnect->sendRequestUser($email);
 $key =  $loadKeyForPassword[0]['useToken'];
 

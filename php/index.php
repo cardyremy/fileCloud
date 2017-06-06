@@ -9,7 +9,9 @@ include_once('include/header.inc.php');
 
 include_once ('include/dbFunction.inc.php');
 
+//déclaration nouvelle instance
 $dbConnect = new dbfunction();
+//Appel fonction
 $loadUserData = $dbConnect->selectAllUser();
 
 ?>

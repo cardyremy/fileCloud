@@ -6,16 +6,20 @@
 // Date:    17.05.2017
 // But:     Deplacement dossiers
 //*********************************************************/
+
+//inclusion classe
 include_once ('include/dbFunction.inc.php');
 
+//déclaration variables
 $idFolder = $_POST['idFolder'];
 $destinationFolder = $_POST['destinationFolder'];
 $folderName = $_POST['folName'];
 
-
+//déclaration nouvelle instance
 $objConnect = new dbfunction();
 
 $folderCheck = $objConnect->selectAllFromFolder();
+
 
 for($i=0;$i<count($folderCheck);$i++)
 {
@@ -32,6 +36,6 @@ for($i=0;$i<count($folderCheck);$i++)
     }
 }
 
-
+//message de déplacement
 echo "En cours de déplacement...";
 header('Refresh:1 folderPage.php');
